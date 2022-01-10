@@ -29,7 +29,7 @@
           </div>
 
           <div class="buttons">
-            <div class="button">
+            <div class="button" id="newTask">
               <img src="./images/add.png" alt="" /><a>New Task</a>
             </div>
 
@@ -81,6 +81,50 @@
         </div>
       </div>
     </main>
+    
+    <div class="form-container">
+      <img id="close" src="./images/close.png" alt="">
+      <form>
+        <div class="left">
+            <label for="title">Title</label>
+          <input type="text" name="title" id="project" placeholder="Title" />
+          <label for="description">Description</label>
+          <input
+            type="text"
+            name="description"
+            id="description"
+            placeholder="Description"
+          />
+
+          <label for="notes">Notes</label>
+          <textarea
+            name="notes"
+            id="notes"
+            cols="30"
+            rows="4"
+            placeholder="Additional notes"
+          ></textarea>
+        </div>
+
+        <div class="right">
+          <label for="project">Project</label>
+          <select name="project" id="project">
+            <option value="default">Default</option>
+            <option value="work">Work</option>
+            <option value="home">Home</option>
+          </select>
+          <label for="due-date">Due date</label>
+          <input type="date" name="due-date" id="due-date" />
+          <label for="priority">Priority</label>
+          <select name="priority" id="priority">
+            <option value="low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+          </select>
+          <input type="submit" value="Submit">
+        </div>
+      </form>
+    </div>
 
     <footer>
       <p>
