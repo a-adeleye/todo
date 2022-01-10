@@ -1,17 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>toDO App</title>
-</head>
-<body>
-    
-    <div class="content">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>mytoDO App</title>
+  </head>
+  <body>
+    <main>
+      <div class="leftSideBar">
+        <div class="logo">
+          <h3>.mytoDO</h3>
+        </div>
+        <div class="navigation">
+          <a><img src="./images/home.png" alt="" /> Home</a>
+          <a><img src="./images/today.png" alt="" /> Today</a>
+          <a><img src="./images/week.png" alt="" /> This Week</a>
+          <a><img src="./images/calendar.png" alt="" /> This Month</a>
+          <a><img src="./images/folder.png" alt="" /> Projects</a>
+          <a><img src="./images/notes.png" alt="" /> Notes</a>
+        </div>
+      </div>
+      <div class="app">
+        <div class="top">
+          <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="search" />
+          </div>
 
-    </div>
+          <div class="buttons">
+            <div class="button">
+              <img src="./images/add.png" alt="" /><a>New Task</a>
+            </div>
+
+            <div class="button">
+              <img src="./images/add.png" alt="" /><a>New Project</a>
+            </div>
+
+            <div class="button">
+              <img src="./images/add.png" alt="" /><a>New Note</a>
+            </div>
+          </div>
+        </div>
+        <div class="heading">
+          <div class="category">
+            <h2>Projects</h2>
+          </div>
+          <select name="filter" id="filter">
+            <option value="today">Today</option>
+            <option value="thisWeek">This Week</option>
+            <option value="thisMonth">This Month</option>
+          </select>
+        </div>
+        <div class="dashboard">
+          <div class="todo">
+            <div class="status">
+              <div class="status-name">Todo</div>
+              <div class="count">246</div>
+            </div>
+            <div class="todo-item"></div>
+          </div>
+          <div class="in-progress">
+            <div class="status">
+              <div class="status-name">In Progress</div>
+              <div class="count">4</div>
+            </div>
+
+            <div class="todo-item" id="in-progress"></div>
+          </div>
+          <div class="completed">
+            <div class="status">
+              <div class="status-name">Completed</div>
+              <div class="count">25</div>
+            </div>
+
+            <div class="todo-item" id="completed"></div>
+            <div class="todo-item" id="completed"></div>
+            
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <p>
+        <a target="_blank" href="https://icons8.com/icon/09LAeukwvRin/note"
+          >Icons</a
+        >
+        by <a target="_blank" href="https://icons8.com">Icons8</a>
+      </p>
+      <p>Adeleye Adeyemi &copy; 2021</p>
+    </footer>
 
     <script src="app.js"></script>
-</body>
+  </body>
 </html>
