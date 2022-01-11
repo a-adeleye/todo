@@ -99,8 +99,8 @@ export const getTodoInput = (() => {
       const taskCard = document.createElement("div");
       taskCard.className = "todo-item";
   
-      // Append
-  
+      // Append     
+
       taskCard.appendChild(title);
       taskCard.appendChild(project);
       taskCard.appendChild(description);
@@ -112,6 +112,9 @@ export const getTodoInput = (() => {
 
       todoList.appendChild(taskCard);
     }
+
+    const id = todos.length + 1;
+    taskCard.setAttribute('id',id);
   }
 
   return { displayForm, closeForm, addTodo, todos };
