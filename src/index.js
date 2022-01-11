@@ -6,6 +6,5 @@ import { updateDOM } from './DOMManager';
 
 document.addEventListener("DOMContentLoaded", () => {
     updateDOM();
-    
 }
 );
