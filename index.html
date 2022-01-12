@@ -7,6 +7,9 @@
     <title>mytoDO App</title>
   </head>
   <body>
+    <div id="content">
+
+    
     <main>
       <div class="leftSideBar">
         <div class="logo">
@@ -68,12 +71,6 @@
                 <h5>Lorem ipsum</h5>
                 <h5>15-5-2021</h5>
                 <h5>Medium</h5>
-                <h5>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                  laboris nisi ut aliquip ex ea commodo consequat.
-                </h5>
                 <div class="taskActions">
                   <i class="far fa-edit"> Edit</i>
                   <i class="far fa-check-square"> Completed</i>
@@ -96,58 +93,8 @@
       </div>
     </main>
 
-    <div class="newTodoForm">
-      <img id="close" src="./images/close.png" alt="" />
-      <form onSubmit="return false;">
-        <div class="left">
-          <label for="title">Title</label>
-          <input type="text" name="title" id="title" placeholder="Title" />
-          <label for="description">Description</label>
-          <input
-            type="text"
-            name="description"
-            id="description"
-            placeholder="Description"
-          />
-
-          <label for="notes">Notes</label>
-          <textarea
-            name="notes"
-            id="notes"
-            cols="3"
-            rows="4"
-            placeholder="Additional notes"
-            wrap="hard"
-          ></textarea>
-        </div>
-
-        <div class="right">
-          <label for="project">Project</label>
-          <select name="project" id="project">
-            <option value="Default">Default</option>
-          </select>
-          <label for="due-date">Due date</label>
-          <input type="date" name="due-date" id="due-date" />
-          <label for="priority">Priority</label>
-          <select name="priority" id="priority">
-            <option value="Low">Low</option>
-            <option value="Medium">Medium</option>
-            <option value="High">High</option>
-          </select>
-          <input type="submit" value="Submit" id="submit" />
-        </div>
-      </form>
-    </div>
-
-    <div class="newProjectForm">
-      <img id="closeProject" src="./images/close.png" alt="" />
-      <form onSubmit="return false;">
-        <label for="newProject">Project</label>
-        <input type="text" name="newProject" id="newProjectName" />
-        <input type="submit" value="Submit" id="submitProject"/>
-      </form>
-    </div>
-
+    
+  </div>
     <footer>
       <p>
         <a target="_blank" href="https://icons8.com/icon/09LAeukwvRin/note"
@@ -157,7 +104,7 @@
       </p>
       <p>Adeleye Adeyemi &copy; 2021</p>
     </footer>
-
+  
     <script src="app.js"></script>
   </body>
 </html>
