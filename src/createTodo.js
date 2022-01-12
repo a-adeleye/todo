@@ -1,15 +1,8 @@
-import { todos, Task } from "./todos";
+import { todos, Todo } from "./todos";
 import { createForm } from "./form";
-import { updateDOM } from './DOMManager';
+import { updateDOM } from "./DOMManager";
 
 export const getTodoInput = (() => {
-
-  const $title = document.querySelector("#title");
-  const $description = document.querySelector("#description");
-  const $project = document.querySelector("#project");
-  const $date = document.querySelector("#due-date");
-  const $priority = document.querySelector("#priority");
-
   function displayForm() {
     createForm.todoForm();
     const form = document.querySelector(".newTodoForm");
@@ -26,7 +19,11 @@ export const getTodoInput = (() => {
   }
 
   function clearForm() {
-    const form = document.querySelector(".newTodoForm");
+    const $title = document.querySelector("#title");
+    const $description = document.querySelector("#description");
+    const $project = document.querySelector("#project");
+    const $date = document.querySelector("#due-date");
+    const $priority = document.querySelector("#priority");
     $title.value = "";
     $description.value = "";
     $project.value = "Default";
@@ -35,15 +32,21 @@ export const getTodoInput = (() => {
   }
 
   function addTodo() {
+    const $title = document.querySelector("#title");
+    const $description = document.querySelector("#description");
+    const $project = document.querySelector("#project");
+    const $date = document.querySelector("#due-date");
+    const $priority = document.querySelector("#priority");
+
     let title = $title.value;
     let description = $description.value;
     let project = $project.value;
     let date = $date.value;
     let priority = $priority.value;
 
-    const newTask = Task(title, description, project, date, priority);
+    const newTodo = Todo(title, description, project, date, priority);
 
-    todos.push(newTask);
+    todos.push(newTodo);
     updateCard();
     assignId();
     clearForm();
@@ -57,8 +60,6 @@ export const getTodoInput = (() => {
     todoList.textContent = "";
 
     todos.forEach((todo) => update(todo));
-
-
 
     function update(todo) {
       const $title = todo.title;
@@ -117,13 +118,12 @@ export const getTodoInput = (() => {
 
       todoList.appendChild(taskCard);
     }
-
   }
 
-  function assignId () {
-    const cards = Array.from(document.querySelectorAll('.todo-item'));
-    for(let i = 0; i < cards.length; i++){
-      cards[i].setAttribute('id',i);
+  function assignId() {
+    const cards = Array.from(document.querySelectorAll(".todo-item"));
+    for (let i = 0; i < cards.length; i++) {
+      cards[i].setAttribute("id", i);
     }
   }
 

@@ -78,7 +78,6 @@ export const createForm = (() => {
 
   const submit = document.createElement("input");
   submit.setAttribute("type", "submit");
-  submit.setAttribute("id", "newFormSubmit");
   submit.value = "Submit";
 
   function todoForm() {
@@ -102,8 +101,12 @@ export const createForm = (() => {
     priorityInput.appendChild(optionLow);
     priorityInput.appendChild(optionMedium);
     priorityInput.appendChild(optionHigh);
+    priorityInput.value = "Low";
 
     rightDiv.appendChild(priorityInput);
+
+    submit.setAttribute("id", "newFormSubmit");
+    submit.addEventListener("click", getTodoInput.addTodo);
     rightDiv.appendChild(submit);
 
     form.appendChild(leftDiv);

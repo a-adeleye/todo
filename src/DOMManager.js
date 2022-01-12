@@ -7,12 +7,10 @@ import { projects } from "./todos";
 export function updateDOM() {
   //project.populateProjects();
 
-  const newTaskBtn = document.querySelector("#newTask");
+  const newTaskBtn = document.getElementById("newTodo");
   newTaskBtn.addEventListener("click", getTodoInput.displayForm);
 
-  /*const submitBtn = document.querySelector("#submit");
-  submitBtn.addEventListener("click", getTodoInput.addTodo);
-
+  /*
   const newProjectBtn = document.querySelector("#newProject");
   newProjectBtn.addEventListener("click", project.displayForm);
 
