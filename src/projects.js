@@ -1,45 +1,43 @@
-import { projects } from "./todos";
+import { createForm } from "./form";
 
+let allProjects = ['Default'];
 
 export const project = (() => {
+  const projectList = document.querySelector("#project");
+  
 
-const projectList = document.querySelector("#project");
-const projectForm = document.querySelector('.newProjectForm');
-const $newProject = document.querySelector("#newProjectName");
-
-function createProject (projectName) {
-    let option = document.createElement('option');
+  function createProject(projectName) {
+    let option = document.createElement("option");
     option.value = projectName;
     option.textContent = projectName;
     projectList.appendChild(option);
-    console.table(projectName); 
-}
+    console.table(projectName);
+  }
 
-function displayForm () {
+  function displayForm() {
+    createForm.projectForm();
+    const projectForm = document.querySelector(".newProjectForm");
     projectForm.style.height = "30%";
     projectForm.style.padding = "20px";
-    projectForm.style.opacity = '1';
+    projectForm.style.opacity = "1";
   }
 
-  function closeForm () {
+  function closeForm() {
+    const projectForm = document.querySelector(".newProjectForm");
     projectForm.style.height = "0";
     projectForm.style.padding = "0";
-    projectForm.style.opacity = '0';
+    projectForm.style.opacity = "0";
   }
 
-function addProject() {
+  function addProject() {
+    const $newProject = document.getElementById("newProjectName");
     let projectName = $newProject.value;
-    projects.push(projectName);
-    populateProjects();
+    allProjects.push(projectName);
     closeForm();
-    clearForm();
-    console.table(projects);
-}
-
-function clearForm() {
-    $newProject.value = "";
+    console.table(allProjects);
   }
 
-return {displayForm, closeForm, addProject};
-
+  return { displayForm, closeForm, addProject };
 })();
+
+export {allProjects};

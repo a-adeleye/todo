@@ -1,5 +1,4 @@
 let todos = [];
-let projects = ['Default'];
 
 const Todo = function (title, description, project, date, priority) {
   let id = todos.length + 1;
@@ -7,4 +6,4 @@ const Todo = function (title, description, project, date, priority) {
   };
 
 
-export {todos, projects, Todo};
+export {todos, Todo};

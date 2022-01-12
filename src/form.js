@@ -1,5 +1,5 @@
 import { getTodoInput } from "./createTodo";
-import { projects } from "./todos";
+import { project, allProjects } from "./projects";
 
 export const createForm = (() => {
   const content = document.querySelector("#content");
@@ -80,14 +80,81 @@ export const createForm = (() => {
   submit.setAttribute("type", "submit");
   submit.value = "Submit";
 
+  let closeListener = "";
+
+  function toggleTodoCloseListener() {
+    if (!closeListener) {
+      closeBtn.addEventListener("click", getTodoInput.closeForm);
+      closeListener = "todo";
+    }
+
+    if (closeListener == "project") {
+      closeBtn.removeEventListener("click", project.closeForm);
+      closeBtn.addEventListener("click", getTodoInput.closeForm);
+      closeListener = "todo";
+    }
+  }
+
+  function toggleProjectCloseListener() {
+    if (!closeListener) {
+      closeBtn.addEventListener("click", project.closeForm);
+      closeListener = "project";
+    }
+
+    if (closeListener == "todo") {
+      closeBtn.removeEventListener("click", getTodoInput.closeForm);
+      closeBtn.addEventListener("click", project.closeForm);
+      closeListener = "project";
+    }
+  }
+
+  let submitListener = "";
+  function toggleTodosubmitListener() {
+    if (!submitListener) {
+      submit.addEventListener("click", getTodoInput.addTodo);
+      submitListener = "todo";
+    }
+
+    if (submitListener == "project") {
+      submit.removeEventListener("click", project.addProject);
+      submit.addEventListener("click", getTodoInput.addTodo);
+      submitListener = "todo";
+    }
+  }
+
+  function toggleProjectSubmitListener() {
+    if (!submitListener) {
+      submit.addEventListener("click", project.addProject);
+      submitListener = "project";
+    }
+
+    if (submitListener == "todo") {
+      submit.removeEventListener("click", getTodoInput.addTodo);
+      submit.addEventListener("click", project.addProject);
+      submitListener = "project";
+    }
+  }
+
+
   function todoForm() {
     formContainer.className = "newTodoForm";
+    formContainer.textContent = "";
 
     leftDiv.appendChild(titleLabel);
     leftDiv.appendChild(titleInput);
     leftDiv.appendChild(projectLabel);
 
-    projects.forEach((project) => appendProject(project));
+
+    projectInput.textContent = "";
+
+    allProjects.forEach((project) => appendProject(project));
+
+    function appendProject(project) {
+      const option = document.createElement("option");
+      option.setAttribute("value", project);
+      option.textContent = project;
+      projectInput.appendChild(option);
+    }
 
     leftDiv.appendChild(projectInput);
     leftDiv.appendChild(descriptionLabel);
@@ -97,7 +164,8 @@ export const createForm = (() => {
     rightDiv.appendChild(dateInput);
     rightDiv.appendChild(priorityLabel);
 
-    priorityInput.textContent = "";
+    form.textContent = "";
+
     priorityInput.appendChild(optionLow);
     priorityInput.appendChild(optionMedium);
     priorityInput.appendChild(optionHigh);
@@ -105,38 +173,49 @@ export const createForm = (() => {
 
     rightDiv.appendChild(priorityInput);
 
-    submit.setAttribute("id", "newFormSubmit");
-    submit.addEventListener("click", getTodoInput.addTodo);
+    submit.setAttribute("id", "newTodoSubmit");
+
+    toggleTodosubmitListener()
+
     rightDiv.appendChild(submit);
 
     form.appendChild(leftDiv);
     form.appendChild(rightDiv);
 
     closeBtn.setAttribute("id", "closeTodoForm");
-    closeBtn.addEventListener("click", getTodoInput.closeForm);
+    toggleTodoCloseListener();
 
     formContainer.appendChild(closeBtn);
     formContainer.appendChild(form);
-
-    function appendProject(project) {
-      const option = document.createElement("option");
-      option.setAttribute("value", project);
-      option.textContent = project;
-      projectInput.textContent = "";
-      projectInput.appendChild(option);
-    }
 
     content.appendChild(formContainer);
   }
 
   function projectForm() {
     formContainer.className = "newProjectForm";
+
     closeBtn.setAttribute("id", "closeProjectForm");
+    toggleProjectCloseListener();
 
-    projectInput.setAttribute("id", "newProjectName");
+    const newProjectLabel = document.createElement("label");
+    newProjectLabel.setAttribute("for", "newProject");
+    newProjectLabel.textContent = "New Project";
 
-    form.appendChild(projectLabel);
-    form.appendChild(projectInput);
+    const newProjectInput = document.createElement("input");
+    newProjectInput.setAttribute("type", "text");
+    newProjectInput.setAttribute("name", "newProject");
+    newProjectInput.setAttribute("id", "newProjectName");
+    newProjectInput.setAttribute("placeholder", "New project here");
+
+    submit.setAttribute("id", "newProjectSubmit");
+
+    toggleProjectSubmitListener()
+
+    form.textContent = "";
+
+    form.appendChild(newProjectLabel);
+    form.appendChild(newProjectInput);
+    form.appendChild(submit);
 
     formContainer.appendChild(closeBtn);
     formContainer.appendChild(form);

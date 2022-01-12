@@ -18,7 +18,7 @@ export const getTodoInput = (() => {
     form.style.opacity = "0";
   }
 
-  function clearForm() {
+  /*function clearForm() {
     const $title = document.querySelector("#title");
     const $description = document.querySelector("#description");
     const $project = document.querySelector("#project");
@@ -30,7 +30,7 @@ export const getTodoInput = (() => {
     $date.value = "";
     $priority.value = "Low";
   }
-
+*/
   function addTodo() {
     const $title = document.querySelector("#title");
     const $description = document.querySelector("#description");
@@ -49,7 +49,6 @@ export const getTodoInput = (() => {
     todos.push(newTodo);
     updateCard();
     assignId();
-    clearForm();
     closeForm();
     updateDOM();
     console.log(todos);
