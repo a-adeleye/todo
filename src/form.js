@@ -1,5 +1,6 @@
 import { getTodoInput } from "./createTodo";
 import { project, allProjects } from "./projects";
+import { note } from "./notes";
 
 export const createForm = (() => {
   const content = document.querySelector("#content");
@@ -135,7 +136,6 @@ export const createForm = (() => {
     }
   }
 
-
   function todoForm() {
     formContainer.className = "newTodoForm";
     formContainer.textContent = "";
@@ -143,7 +143,6 @@ export const createForm = (() => {
     leftDiv.appendChild(titleLabel);
     leftDiv.appendChild(titleInput);
     leftDiv.appendChild(projectLabel);
-
 
     projectInput.textContent = "";
 
@@ -175,7 +174,7 @@ export const createForm = (() => {
 
     submit.setAttribute("id", "newTodoSubmit");
 
-    toggleTodosubmitListener()
+    toggleTodosubmitListener();
 
     rightDiv.appendChild(submit);
 
@@ -199,7 +198,7 @@ export const createForm = (() => {
 
     const newProjectLabel = document.createElement("label");
     newProjectLabel.setAttribute("for", "newProject");
-    newProjectLabel.textContent = "New Project";
+    newProjectLabel.textContent = "New project";
 
     const newProjectInput = document.createElement("input");
     newProjectInput.setAttribute("type", "text");
@@ -209,8 +208,9 @@ export const createForm = (() => {
 
     submit.setAttribute("id", "newProjectSubmit");
 
-    toggleProjectSubmitListener()
+    toggleProjectSubmitListener();
 
+    formContainer.textContent = "";
     form.textContent = "";
 
     form.appendChild(newProjectLabel);
@@ -223,5 +223,52 @@ export const createForm = (() => {
     content.appendChild(formContainer);
   }
 
-  return { todoForm, projectForm };
+  function noteForm() {
+    formContainer.className = "noteForm";
+
+    const i = document.createElement("i");
+    i.className = "fas";
+    i.classList.add("fa-window-close");
+    const noteLabel = document.createElement("label");
+    noteLabel.setAttribute("for", "note");
+    noteLabel.textContent = "New note";
+
+    const titleLabel = document.createElement("label");
+    titleLabel.setAttribute("for", "title");
+    titleLabel.textContent = "Title";
+
+    const noteTitle = document.createElement("input");
+    noteTitle.setAttribute("type", "text");
+    noteTitle.setAttribute("name", "noteTitle");
+    noteTitle.setAttribute("id", "noteTitle");
+    noteTitle.setAttribute("placeholder", "Note title");
+
+    const noteInput = document.createElement("textarea");
+    noteInput.setAttribute("name", "note");
+    noteInput.setAttribute("id", "note");
+    noteInput.setAttribute("placeholder", "New note here");
+    noteInput.setAttribute("rows", "5");
+    noteInput.setAttribute("cols", "20");
+    noteInput.setAttribute("wrap", "hard");
+
+    formContainer.textContent = "";
+
+    const a = document.createElement("a");
+    a.textContent = "Add note";
+    a.addEventListener("click", note.addNote);
+
+    i.addEventListener("click", note.closeForm);
+
+    formContainer.appendChild(i);
+
+    formContainer.appendChild(titleLabel);
+    formContainer.appendChild(noteTitle);
+    formContainer.appendChild(noteLabel);
+    formContainer.appendChild(noteInput);
+    formContainer.appendChild(a);
+
+    content.appendChild(formContainer);
+  }
+
+  return { todoForm, projectForm, noteForm };
 })();

@@ -1,6 +1,7 @@
 import { getTodoInput } from "./createTodo";
 import { project } from "./projects";
 import { update } from "./updateTodo";
+import { note } from "./notes";
 
 export function updateDOM() {
   //project.populateProjects();
@@ -10,6 +11,9 @@ export function updateDOM() {
 
   const newProjectBtn = document.getElementById("newProject");
   newProjectBtn.addEventListener("click", project.displayForm);
+
+  const newNoteBtn = document.getElementById("newNote");
+  newNoteBtn.addEventListener("click", note.displayForm);
 
   /*
 

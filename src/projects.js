@@ -17,16 +17,18 @@ export const project = (() => {
   function displayForm() {
     createForm.projectForm();
     const projectForm = document.querySelector(".newProjectForm");
-    projectForm.style.height = "30%";
+    projectForm.style.display = 'flex';
+    /*projectForm.style.height = "40%";
     projectForm.style.padding = "20px";
-    projectForm.style.opacity = "1";
+    projectForm.style.opacity = "1";*/
   }
 
   function closeForm() {
     const projectForm = document.querySelector(".newProjectForm");
-    projectForm.style.height = "0";
+    projectForm.style.display = 'none';
+    /*projectForm.style.height = "0";
     projectForm.style.padding = "0";
-    projectForm.style.opacity = "0";
+    projectForm.style.opacity = "0";*/
   }
 
   function addProject() {

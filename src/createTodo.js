@@ -6,16 +6,18 @@ export const getTodoInput = (() => {
   function displayForm() {
     createForm.todoForm();
     const form = document.querySelector(".newTodoForm");
-    form.style.height = "60%";
+    form.style.display = 'flex';
+    /*form.style.height = "60%";
     form.style.padding = "20px";
-    form.style.opacity = "1";
+    form.style.opacity = "1";*/
   }
 
   function closeForm() {
     const form = document.querySelector(".newTodoForm");
-    form.style.height = "0";
+    form.style.display = 'none';
+    /*form.style.height = "0";
     form.style.padding = "0";
-    form.style.opacity = "0";
+    form.style.opacity = "0";*/
   }
 
   /*function clearForm() {
