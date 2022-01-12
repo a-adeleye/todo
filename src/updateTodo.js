@@ -2,6 +2,7 @@ import { todos } from "./todos";
 import { getTodoInput } from "./createTodo";
 
 export const update = (() => {
+
   const editTodo = (event) => {
     const element = event.target.parentNode;
     let id = element.parentNode.id;
@@ -10,7 +11,7 @@ export const update = (() => {
 
     // const form = document.querySelector(".newTodoForm");
 
-    const cards = Array.from(document.querySelectorAll('.todo-item'));
+    const cards = Array.from(document.querySelectorAll(".todo-item"));
     let card = cards[id];
 
     let todo = todos[id];
@@ -30,17 +31,12 @@ export const update = (() => {
 
     const $priority = document.querySelector("#priority");
     $priority.value = todo.priority;
-
-
-    /* const $title = form.querySelector("#title");
-    
-    const $notes = form.querySelector("#notes");
-    
-    
-    const $priority = form.querySelector("#priority");
-
   };
 
+  return { editTodo, updateTodo };
+})();
+
+/* 
   const updateTodo = (event) => {
     const element = event.target.parentNode;
     element.parentNode.setAttribute("contenteditable", "false");
@@ -48,10 +44,9 @@ export const update = (() => {
     document.getElementById("updateTodo").style.display = "none";
   };
 
-  return { editTodo, updateTodo };
-})();
 
-/*const $title = document.querySelector("#title");
+
+const $title = document.querySelector("#title");
 const $description = document.querySelector("#description");
 const $notes = document.querySelector("#notes");
 const $project = document.querySelector("#project");

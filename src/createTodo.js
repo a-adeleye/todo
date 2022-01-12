@@ -1,31 +1,34 @@
 import { todos, Task } from "./todos";
+import { createForm } from "./form";
 import { updateDOM } from './DOMManager';
 
 export const getTodoInput = (() => {
-  const form = document.querySelector(".newTodoForm");
+
   const $title = document.querySelector("#title");
   const $description = document.querySelector("#description");
-  const $notes = document.querySelector("#notes");
   const $project = document.querySelector("#project");
   const $date = document.querySelector("#due-date");
   const $priority = document.querySelector("#priority");
 
   function displayForm() {
+    createForm.todoForm();
+    const form = document.querySelector(".newTodoForm");
     form.style.height = "60%";
     form.style.padding = "20px";
     form.style.opacity = "1";
   }
 
   function closeForm() {
+    const form = document.querySelector(".newTodoForm");
     form.style.height = "0";
     form.style.padding = "0";
     form.style.opacity = "0";
   }
 
   function clearForm() {
+    const form = document.querySelector(".newTodoForm");
     $title.value = "";
     $description.value = "";
-    $notes.value = "";
     $project.value = "Default";
     $date.value = "";
     $priority.value = "Low";
@@ -34,12 +37,11 @@ export const getTodoInput = (() => {
   function addTodo() {
     let title = $title.value;
     let description = $description.value;
-    let notes = $notes.value;
     let project = $project.value;
     let date = $date.value;
     let priority = $priority.value;
 
-    const newTask = Task(title, description, notes, project, date, priority);
+    const newTask = Task(title, description, project, date, priority);
 
     todos.push(newTask);
     updateCard();
@@ -62,7 +64,6 @@ export const getTodoInput = (() => {
       const $title = todo.title;
       const $description = todo.description;
       const $project = todo.project;
-      const $note = todo.notes;
       const $dueDate = todo.date;
       const $priority = todo.priority;
 
@@ -76,8 +77,6 @@ export const getTodoInput = (() => {
       dueDate.textContent = $dueDate;
       const priority = document.createElement("h5");
       priority.textContent = $priority;
-      const note = document.createElement("h5");
-      note.textContent = $note;
 
       // Task actions
 
@@ -113,7 +112,6 @@ export const getTodoInput = (() => {
       taskCard.appendChild(description);
       taskCard.appendChild(dueDate);
       taskCard.appendChild(priority);
-      taskCard.appendChild(note);
       taskCard.appendChild(taskActions);
       taskCard.appendChild(priorityIndicator);
 

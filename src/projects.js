@@ -7,11 +7,6 @@ const projectList = document.querySelector("#project");
 const projectForm = document.querySelector('.newProjectForm');
 const $newProject = document.querySelector("#newProjectName");
 
-function populateProjects () {
-    projectList.textContent = '';
-    projects.forEach(project => createProject(project));
-}
-
 function createProject (projectName) {
     let option = document.createElement('option');
     option.value = projectName;
@@ -45,6 +40,6 @@ function clearForm() {
     $newProject.value = "";
   }
 
-return {displayForm, closeForm, addProject, populateProjects};
+return {displayForm, closeForm, addProject};
 
 })();

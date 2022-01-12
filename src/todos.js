@@ -1,9 +1,9 @@
 let todos = [];
 let projects = ['Default'];
 
-const Task = function (title, description, notes, project, date, priority) {
+const Task = function (title, description, project, date, priority) {
   let id = todos.length + 1;
-    return { id,title, description, notes, project, date, priority };
+    return { id,title, description, project, date, priority };
   };
 
 

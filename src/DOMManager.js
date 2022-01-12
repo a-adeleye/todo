@@ -5,15 +5,12 @@ import { update } from "./updateTodo";
 import { projects } from "./todos";
 
 export function updateDOM() {
-  project.populateProjects();
-
-  const closeBtn = document.querySelector("#close");
-  closeBtn.addEventListener("click", getTodoInput.closeForm);
+  //project.populateProjects();
 
   const newTaskBtn = document.querySelector("#newTask");
   newTaskBtn.addEventListener("click", getTodoInput.displayForm);
 
-  const submitBtn = document.querySelector("#submit");
+  /*const submitBtn = document.querySelector("#submit");
   submitBtn.addEventListener("click", getTodoInput.addTodo);
 
   const newProjectBtn = document.querySelector("#newProject");
@@ -24,7 +21,7 @@ export function updateDOM() {
 
   const submitProjectBtn = document.querySelector("#submitProject");
   submitProjectBtn.addEventListener("click", project.addProject);
-
+*/
 const editTodoBtns = Array.from(document.querySelectorAll('.fa-edit'));
 editTodoBtns.forEach(btn => btn.addEventListener('click', update.editTodo));
 
