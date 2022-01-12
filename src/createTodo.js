@@ -6,7 +6,7 @@ export const getTodoInput = (() => {
   function displayForm() {
     createForm.todoForm();
     const form = document.querySelector(".newTodoForm");
-    form.style.display = 'flex';
+    form.style.display = "flex";
     /*form.style.height = "60%";
     form.style.padding = "20px";
     form.style.opacity = "1";*/
@@ -14,7 +14,7 @@ export const getTodoInput = (() => {
 
   function closeForm() {
     const form = document.querySelector(".newTodoForm");
-    form.style.display = 'none';
+    form.style.display = "none";
     /*form.style.height = "0";
     form.style.padding = "0";
     form.style.opacity = "0";*/
@@ -57,17 +57,36 @@ export const getTodoInput = (() => {
   }
 
   function updateCard() {
-    const todoList = document.querySelector(".todoList");
+    const dashboard = document.getElementById("dashboard");
+
+    dashboard.textContent = "";
+
+    if (dashboard.className !== "todoView") {
+      dashboard.className = 'todoView';
+    }
+
+    const todo = document.createElement("div");
+    todo.className = "todo";
+
+    const status = document.createElement("div");
+    status.className = "status";
+
+    const todoList = document.createElement("div");
+    todoList.className = "todoList";
+
     todoList.textContent = "";
 
-    todos.forEach((todo) => update(todo));
+    for (let i = todos.length; i > 0; i--) {
+      let todo = todos[i - 1];
+      update(todo);
+    }
 
-    function update(todo) {
-      const $title = todo.title;
-      const $description = todo.description;
-      const $project = todo.project;
-      const $dueDate = todo.date;
-      const $priority = todo.priority;
+    function update(obj) {
+      const $title = obj.title;
+      const $description = obj.description;
+      const $project = obj.project;
+      const $dueDate = obj.date;
+      const $priority = obj.priority;
 
       const title = document.createElement("h4");
       title.textContent = $title;
@@ -104,20 +123,25 @@ export const getTodoInput = (() => {
         `priority ${$priority.toLowerCase()}`
       );
 
-      const taskCard = document.createElement("div");
-      taskCard.className = "todo-item";
+      const todoItem = document.createElement("div");
+      todoItem.className = "todo-item";
 
       // Append
 
-      taskCard.appendChild(title);
-      taskCard.appendChild(project);
-      taskCard.appendChild(description);
-      taskCard.appendChild(dueDate);
-      taskCard.appendChild(priority);
-      taskCard.appendChild(taskActions);
-      taskCard.appendChild(priorityIndicator);
+      todoItem.appendChild(title);
+      todoItem.appendChild(project);
+      todoItem.appendChild(description);
+      todoItem.appendChild(dueDate);
+      todoItem.appendChild(priority);
+      todoItem.appendChild(taskActions);
+      todoItem.appendChild(priorityIndicator);
 
-      todoList.appendChild(taskCard);
+      todoList.appendChild(todoItem);
+
+      todo.appendChild(status);
+      todo.appendChild(todoList);
+
+      dashboard.appendChild(todo);
     }
   }
 

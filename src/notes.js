@@ -39,7 +39,7 @@ export const note = (() => {
     dashboard.textContent = "";
 
     if (dashboard.className !== "noteView") {
-      dashboard.classList.toggle("noteView");
+      dashboard.className = "noteView";
     }
 
     for (let i = notes.length; i > 0; i--) {
