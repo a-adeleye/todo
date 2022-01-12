@@ -62,7 +62,7 @@ export const getTodoInput = (() => {
     dashboard.textContent = "";
 
     if (dashboard.className !== "todoView") {
-      dashboard.className = 'todoView';
+      dashboard.className = "todoView";
     }
 
     const todo = document.createElement("div");
@@ -80,6 +80,7 @@ export const getTodoInput = (() => {
       let todo = todos[i - 1];
       update(todo);
     }
+
 
     function update(obj) {
       const $title = obj.title;
@@ -137,12 +138,63 @@ export const getTodoInput = (() => {
       todoItem.appendChild(priorityIndicator);
 
       todoList.appendChild(todoItem);
-
+      updateStatus(status);
       todo.appendChild(status);
       todo.appendChild(todoList);
 
       dashboard.appendChild(todo);
     }
+
+    function updateStatus(status) {
+      let todoCount = todos.length;
+
+      const statusName = document.createElement("div");
+      statusName.className = "status-name";
+      statusName.textContent = "Todo";
+
+      const count = document.createElement("div");
+      count.className = "count";
+      count.setAttribute("id", "todoCount");
+      count.textContent = todoCount;
+
+      status.textContent = "";
+
+      status.appendChild(statusName);
+      status.appendChild(count);
+
+      // Update competed todos
+    }
+
+    const completedList = document.createElement("div");
+    completedList.className = "completed";
+
+    const completedStatus = document.createElement("div");
+    completedStatus.className = "status";
+
+    function updateCompleted() {
+      const dashboard = document.getElementById("dashboard");
+      const statusName = document.createElement("div");
+      statusName.className = "status-name";
+      statusName.textContent = "Completed";
+
+      const count = document.createElement("div");
+      count.className = "count";
+      count.setAttribute("id", "todoCount");
+
+      let completedCount = todos.length;
+      count.textContent = completedCount;
+
+      completedList.textContent = "";
+      completedStatus.textContent = "";
+
+      completedStatus.appendChild(statusName);
+      completedStatus.appendChild(count);
+
+      completedList.appendChild(completedStatus);
+
+      dashboard.appendChild(completedList);
+    }
+    updateCompleted();
   }
 
   function assignId() {
