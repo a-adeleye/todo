@@ -8,93 +8,90 @@
   </head>
   <body>
     <div id="content">
-
-    
-    <main>
-      <div class="leftSideBar">
-        <div class="logo">
-          <h3>.mytoDO</h3>
-        </div>
-        <div class="navigation">
-          <a><img src="./images/home.png" alt="" /> Home</a>
-          <a><img src="./images/today.png" alt="" /> Today</a>
-          <a><img src="./images/week.png" alt="" /> This Week</a>
-          <a><img src="./images/calendar.png" alt="" /> This Month</a>
-          <a><img src="./images/folder.png" alt="" /> Projects</a>
-          <a><img src="./images/notes.png" alt="" /> Notes</a>
-        </div>
-      </div>
-      <div class="app">
-        <div class="top">
-          <div class="search-box">
-            <i class="fas fa-search"></i>
-            <input type="text" placeholder="search" />
+      <main>
+        <div class="leftSideBar">
+          <div class="logo">
+            <h3>.mytoDO</h3>
           </div>
-
-          <div class="buttons">
-            <div class="button" id="newTodo">
-              <img src="./images/add.png" alt="" /><a>New Todo</a>
-            </div>
-
-            <div class="button" id="newProject">
-              <img src="./images/add.png" alt="" /><a>New Project</a>
-            </div>
-
-            <div class="button">
-              <img src="./images/add.png" alt="" /><a>New Note</a>
-            </div>
+          <div class="navigation">
+            <a><img src="./images/home.png" alt="" /> Home</a>
+            <a><img src="./images/today.png" alt="" /> Today</a>
+            <a><img src="./images/week.png" alt="" /> This Week</a>
+            <a><img src="./images/calendar.png" alt="" /> This Month</a>
+            <a><img src="./images/folder.png" alt="" /> Projects</a>
+            <a><img src="./images/notes.png" alt="" /> Notes</a>
           </div>
         </div>
-        <div class="heading">
-          <div class="category">
-            <h2>Home</h2>
-          </div>
-          <select name="filter" id="filter">
-            <option value="today">Today</option>
-            <option value="thisWeek">This Week</option>
-            <option value="thisMonth">This Month</option>
-          </select>
-        </div>
-        <div class="dashboard">
-          <div class="todo">
-            <div class="status">
-              <div class="status-name">Todo</div>
-              <div class="count" id="todoCount">0</div>
+        <div class="app">
+          <div class="top">
+            <div class="search-box">
+              <i class="fas fa-search"></i>
+              <input type="text" placeholder="search" />
             </div>
-            <div class="todoList">
-              <div class="todo-item">
-                <div class="priority high"></div>
-                <h4>My Task for today My Task for today</h4>
-                <h5>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                </h5>
-                <h5>Lorem ipsum</h5>
-                <h5>15-5-2021</h5>
-                <h5>Medium</h5>
-                <div class="taskActions">
-                  <i class="far fa-edit"> Edit</i>
-                  <i class="far fa-check-square"> Completed</i>
-                  <a id="updateTodo">Update</a>
-                </div>
+
+            <div class="buttons">
+              <div class="button" id="newTodo">
+                <img src="./images/add.png" alt="" /><a>New Todo</a>
+              </div>
+
+              <div class="button" id="newProject">
+                <img src="./images/add.png" alt="" /><a>New Project</a>
+              </div>
+
+              <div class="button" id="newNote">
+                <img src="./images/add.png" alt="" /><a>New Note</a>
               </div>
             </div>
           </div>
-
-          <div class="completed">
-            <div class="status">
-              <div class="status-name">Completed</div>
-              <div class="count">25</div>
+          <div class="heading">
+            <div class="category">
+              <h2>Home</h2>
+            </div>
+            <select name="filter" id="filter">
+              <option value="today">Today</option>
+              <option value="thisWeek">This Week</option>
+              <option value="thisMonth">This Month</option>
+            </select>
+          </div>
+          <div  id="dashboard">
+            <div class="todo">
+              <div class="status">
+                <div class="status-name">Todo</div>
+                <div class="count" id="todoCount">0</div>
+              </div>
+              <div class="todoList">
+                <div class="todo-item">
+                  <div class="priority high"></div>
+                  <h4>My Task for today My Task for today</h4>
+                  <h5>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                  </h5>
+                  <h5>Lorem ipsum</h5>
+                  <h5>15-5-2021</h5>
+                  <h5>Medium</h5>
+                  <div class="taskActions">
+                    <i class="far fa-edit"> Edit</i>
+                    <i class="far fa-check-square"> Completed</i>
+                    <a id="updateTodo">Update</a>
+                  </div>
+                </div>
+              </div>
             </div>
 
-            <div class="todo-item" id="completed"></div>
-            <div class="todo-item" id="completed"></div>
+            <div class="completed">
+              <div class="status">
+                <div class="status-name">Completed</div>
+                <div class="count">25</div>
+              </div>
+
+              <div class="todo-item" id="completed"></div>
+              <div class="todo-item" id="completed"></div>
+            </div>
           </div>
         </div>
-      </div>
-    </main>
+      </main>
+    </div>
 
-    
-  </div>
     <footer>
       <p>
         <a target="_blank" href="https://icons8.com/icon/09LAeukwvRin/note"
@@ -104,7 +101,7 @@
       </p>
       <p>Adeleye Adeyemi &copy; 2021</p>
     </footer>
-  
+
     <script src="app.js"></script>
   </body>
 </html>
