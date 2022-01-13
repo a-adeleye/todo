@@ -1,3 +1,4 @@
+import {populateStorage, retrieveData} from './storage';
 import { todos, Todo } from "./todos";
 import { createForm } from "./form";
 import { updateDOM } from "./DOMManager";

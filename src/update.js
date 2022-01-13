@@ -1,3 +1,4 @@
+import {populateStorage, retrieveData} from './storage';
 import { todos } from "./todos";
 import { getTodoInput } from "./createTodo";
 import { note, notes } from "./notes";

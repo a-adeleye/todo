@@ -113,7 +113,7 @@ export const createForm = (() => {
     rightDiv.appendChild(priorityInput);
 
     const submit = document.createElement("a");
-    submit.className = 'submitBtn';
+    submit.className = "submitBtn";
     submit.textContent = "Submit";
     submit.addEventListener("click", getTodoInput.addTodo);
     rightDiv.appendChild(submit);
@@ -151,7 +151,7 @@ export const createForm = (() => {
     form.appendChild(newProjectInput);
 
     const submit = document.createElement("a");
-    submit.className = 'submitBtn';
+    submit.className = "submitBtn";
     submit.textContent = "Submit";
     submit.addEventListener("click", project.addProject);
     form.appendChild(submit);
@@ -198,18 +198,12 @@ export const createForm = (() => {
     formContainer.appendChild(noteInput);
 
     const submit = document.createElement("a");
-    submit.className = 'submitBtn';
+    submit.className = "submitBtn";
     submit.textContent = "Add note";
     submit.addEventListener("click", note.addNote);
     formContainer.appendChild(submit);
 
     content.appendChild(formContainer);
-  }
-
-  //Todo edit form
-
-  function todoEditForm() {
-    
   }
 
   return { todoForm, projectForm, noteForm };

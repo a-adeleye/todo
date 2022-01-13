@@ -4,8 +4,6 @@ import { update } from "./update";
 import { note } from "./notes";
 
 export function updateDOM() {
-  //project.populateProjects();
-
   const newTaskBtn = document.getElementById("newTodo");
   newTaskBtn.addEventListener("click", getTodoInput.displayForm);
 
@@ -15,17 +13,11 @@ export function updateDOM() {
   const newNoteBtn = document.getElementById("newNote");
   newNoteBtn.addEventListener("click", note.displayForm);
 
-  /*
+  const editTodoBtns = Array.from(document.querySelectorAll(".fa-edit"));
+  editTodoBtns.forEach((btn) => btn.addEventListener("click", update.editTodo));
 
-  const closeProjectBtn = document.querySelector("#closeProject");
-  closeProjectBtn.addEventListener("click", project.closeForm);
-
-  
-*/
-const editTodoBtns = Array.from(document.querySelectorAll('.fa-edit'));
-editTodoBtns.forEach(btn => btn.addEventListener('click', update.editTodo));
-
-const updateTodoBtns = Array.from(document.querySelectorAll('#updateTodo'));
-updateTodoBtns.forEach(btn => btn.addEventListener('click', update.updateTodo));
-
+  const updateTodoBtns = Array.from(document.querySelectorAll("#updateTodo"));
+  updateTodoBtns.forEach((btn) =>
+    btn.addEventListener("click", update.updateTodo)
+  );
 }

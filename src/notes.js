@@ -1,5 +1,7 @@
+import { populateStorage, retrieveData } from "./storage";
 import { createForm } from "./form";
-import {update} from './update';
+import { storage } from "./storage";
+import { update } from "./update";
 
 let notes = [];
 
@@ -27,6 +29,7 @@ export const note = (() => {
     let newNote = Note(title, noteContent);
 
     notes.push(newNote);
+    storage.populateStorage();
     console.table(newNote);
     renderPage();
     closeForm();
@@ -57,9 +60,9 @@ export const note = (() => {
       edit.innerText = " Edit";
       edit.className = "far";
       edit.classList.add("fa-edit");
-      edit.addEventListener('click', update.editNote)
+      edit.addEventListener("click", update.editNote);
       noteCard.appendChild(edit);
-     
+
       dashboard.appendChild(noteCard);
     }
   }
@@ -73,12 +76,13 @@ export const note = (() => {
     }
   }
 
-  function renderPage(){
+  function renderPage() {
+    storage.retrieveData();
     updateNotes();
     assignId();
   }
 
-  return { displayForm, closeForm, addNote, renderPage};
+  return { displayForm, closeForm, addNote, renderPage };
 })();
 
-export {notes};
+export { notes };
