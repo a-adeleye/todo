@@ -9,13 +9,11 @@ function Note(title, note) {
 export const note = (() => {
   function displayForm() {
     createForm.noteForm();
-    const form = document.querySelector(".noteForm");
-    form.style.display = "flex";
   }
 
   function closeForm() {
     const form = document.querySelector(".noteForm");
-    form.style.display = "none";
+    form.parentNode.removeChild(form);
   }
 
   function addNote() {

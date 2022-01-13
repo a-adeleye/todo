@@ -1,10 +1,9 @@
 import { createForm } from "./form";
 
-let allProjects = ['Default'];
+let allProjects = ["Default"];
 
 export const project = (() => {
   const projectList = document.querySelector("#project");
-  
 
   function createProject(projectName) {
     let option = document.createElement("option");
@@ -16,16 +15,19 @@ export const project = (() => {
 
   function displayForm() {
     createForm.projectForm();
-    const projectForm = document.querySelector(".newProjectForm");
-    projectForm.style.display = 'flex';
+    const form = document.querySelector(".newProjectForm");
+
+    //projectForm.style.display = 'flex';
     /*projectForm.style.height = "40%";
     projectForm.style.padding = "20px";
     projectForm.style.opacity = "1";*/
   }
 
   function closeForm() {
-    const projectForm = document.querySelector(".newProjectForm");
-    projectForm.style.display = 'none';
+    const form = document.querySelector(".newProjectForm");
+    form.parentNode.removeChild(form);
+
+    //projectForm.style.display = 'none';
     /*projectForm.style.height = "0";
     projectForm.style.padding = "0";
     projectForm.style.opacity = "0";*/
@@ -42,4 +44,4 @@ export const project = (() => {
   return { displayForm, closeForm, addProject };
 })();
 
-export {allProjects};
+export { allProjects };

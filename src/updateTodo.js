@@ -2,14 +2,12 @@ import { todos } from "./todos";
 import { getTodoInput } from "./createTodo";
 
 export const update = (() => {
+  let arrayId = "";
 
   const editTodo = (event) => {
-    const element = event.target.parentNode;
-    let id = element.parentNode.id;
-    console.log(element.parentNode.id);
     getTodoInput.displayForm();
-
-    // const form = document.querySelector(".newTodoForm");
+    const element = event.target.parentNode;
+    let id = element.parentNode.id - 1;
 
     const cards = Array.from(document.querySelectorAll(".todo-item"));
     let card = cards[id];
@@ -18,7 +16,6 @@ export const update = (() => {
 
     const $title = document.querySelector("#title");
     $title.value = todo.title;
-    console.log(todo.title);
 
     const $description = document.querySelector("#description");
     $description.value = todo.description;
@@ -31,7 +28,39 @@ export const update = (() => {
 
     const $priority = document.querySelector("#priority");
     $priority.value = todo.priority;
+
+    const btn = document.querySelector(".submitBtn");
+    btn.removeEventListener("click", getTodoInput.addTodo);
+    btn.addEventListener("click", updateTodo);
+
+    arrayId = id;
+    console.table(todos);
   };
+
+  function updateTodo() {
+    const $title = document.querySelector("#title");
+    let title = $title.value;
+
+    const $description = document.querySelector("#description");
+    let description = $description.value;
+
+    const $project = document.querySelector("#project");
+    let project = $project.value;
+
+    const $date = document.querySelector("#due-date");
+    let date = $date.value;
+
+    const $priority = document.querySelector("#priority");
+    let priority = $priority.value;
+
+    let id = arrayId + 1;
+
+    todos[arrayId] = { id, title, description, project, date, priority };
+
+    console.table(todos);
+    getTodoInput.closeForm();
+    getTodoInput.renderPage();
+  }
 
   return { editTodo, updateTodo };
 })();

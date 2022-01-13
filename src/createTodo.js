@@ -14,25 +14,13 @@ export const getTodoInput = (() => {
 
   function closeForm() {
     const form = document.querySelector(".newTodoForm");
-    form.style.display = "none";
+    form.parentNode.removeChild(form);
+    //form.style.display = "none";
     /*form.style.height = "0";
     form.style.padding = "0";
     form.style.opacity = "0";*/
   }
 
-  /*function clearForm() {
-    const $title = document.querySelector("#title");
-    const $description = document.querySelector("#description");
-    const $project = document.querySelector("#project");
-    const $date = document.querySelector("#due-date");
-    const $priority = document.querySelector("#priority");
-    $title.value = "";
-    $description.value = "";
-    $project.value = "Default";
-    $date.value = "";
-    $priority.value = "Low";
-  }
-*/
   function addTodo() {
     const $title = document.querySelector("#title");
     const $description = document.querySelector("#description");
@@ -49,11 +37,8 @@ export const getTodoInput = (() => {
     const newTodo = Todo(title, description, project, date, priority);
 
     todos.push(newTodo);
-    updateCard();
-    assignId();
     closeForm();
-    updateDOM();
-    console.log(todos);
+    renderPage();
   }
 
   function updateCard() {
@@ -80,7 +65,6 @@ export const getTodoInput = (() => {
       let todo = todos[i - 1];
       update(todo);
     }
-
 
     function update(obj) {
       const $title = obj.title;
@@ -199,10 +183,19 @@ export const getTodoInput = (() => {
 
   function assignId() {
     const cards = Array.from(document.querySelectorAll(".todo-item"));
+    let id = "";
     for (let i = 0; i < cards.length; i++) {
-      cards[i].setAttribute("id", i);
+      id = cards.length - i;
+      cards[i].setAttribute("id", id);
     }
   }
 
-  return { displayForm, closeForm, addTodo, todos };
+  function renderPage(){
+    updateCard();
+    assignId();
+    updateDOM();
+    console.log(todos);
+  }
+
+  return { displayForm, closeForm, addTodo, renderPage, todos };
 })();
