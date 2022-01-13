@@ -1,4 +1,5 @@
 import { createForm } from "./form";
+import { storage } from "./storage";
 
 let allProjects = ["Default"];
 
@@ -38,6 +39,7 @@ export const project = (() => {
     let projectName = $newProject.value;
     allProjects.push(projectName);
     closeForm();
+    storage.populateProjects();
     console.table(allProjects);
   }
 

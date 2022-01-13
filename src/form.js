@@ -1,6 +1,7 @@
 import { getTodoInput } from "./createTodo";
 import { project, allProjects } from "./projects";
 import { note } from "./notes";
+import { storage } from "./storage";
 
 export const createForm = (() => {
   const content = document.querySelector("#content");
@@ -8,6 +9,9 @@ export const createForm = (() => {
   // Todo form
 
   function todoForm() {
+
+    storage.retrieveProjects();
+    
     const formContainer = document.createElement("div");
     formContainer.className = "newTodoForm";
 
@@ -48,6 +52,7 @@ export const createForm = (() => {
     projectInput.setAttribute("id", "project");
 
     projectInput.textContent = "";
+
     allProjects.forEach((project) => appendProject(project));
 
     function appendProject(project) {

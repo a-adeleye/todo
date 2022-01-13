@@ -159,7 +159,7 @@ main {
   overflow-y: auto;
   background: #f3f1f6;
   padding: 20px;
-  gap: 20px;
+  gap: 10px;
 }
 
 .todo,

@@ -1,4 +1,4 @@
-import {populateStorage, retrieveData} from './storage';
+import {storage} from './storage';
 import { todos, Todo } from "./todos";
 import { createForm } from "./form";
 import { updateDOM } from "./DOMManager";
@@ -38,12 +38,14 @@ export const getTodoInput = (() => {
     const newTodo = Todo(title, description, project, date, priority);
 
     todos.push(newTodo);
+    storage.populateTodos();
     closeForm();
     renderPage();
   }
 
   function updateCard() {
     const dashboard = document.getElementById("dashboard");
+    storage.retrieveTodos();
 
     dashboard.textContent = "";
 

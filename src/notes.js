@@ -29,7 +29,7 @@ export const note = (() => {
     let newNote = Note(title, noteContent);
 
     notes.push(newNote);
-    storage.populateStorage();
+    storage.populateNotes();
     console.table(newNote);
     renderPage();
     closeForm();
@@ -65,6 +65,8 @@ export const note = (() => {
 
       dashboard.appendChild(noteCard);
     }
+
+    assignId();
   }
 
   function assignId() {
@@ -77,9 +79,8 @@ export const note = (() => {
   }
 
   function renderPage() {
-    storage.retrieveData();
+    storage.retrieveNotes();
     updateNotes();
-    assignId();
   }
 
   return { displayForm, closeForm, addNote, renderPage };
