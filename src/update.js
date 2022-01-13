@@ -1,16 +1,15 @@
 import { todos } from "./todos";
 import { getTodoInput } from "./createTodo";
+import { note, notes } from "./notes";
 
 export const update = (() => {
-  let arrayId = "";
+  let currentCardId = "";
+  let currentNoteId = "";
 
   const editTodo = (event) => {
     getTodoInput.displayForm();
     const element = event.target.parentNode;
     let id = element.parentNode.id - 1;
-
-    const cards = Array.from(document.querySelectorAll(".todo-item"));
-    let card = cards[id];
 
     let todo = todos[id];
 
@@ -33,7 +32,7 @@ export const update = (() => {
     btn.removeEventListener("click", getTodoInput.addTodo);
     btn.addEventListener("click", updateTodo);
 
-    arrayId = id;
+    currentCardId = id;
     console.table(todos);
   };
 
@@ -53,16 +52,64 @@ export const update = (() => {
     const $priority = document.querySelector("#priority");
     let priority = $priority.value;
 
-    let id = arrayId + 1;
+    let id = currentCardId + 1;
 
-    todos[arrayId] = { id, title, description, project, date, priority };
+    todos[currentCardId] = { id, title, description, project, date, priority };
 
     console.table(todos);
     getTodoInput.closeForm();
     getTodoInput.renderPage();
   }
 
-  return { editTodo, updateTodo };
+  /*
+
+  function editProject() {}
+
+  function updateProject() {} */
+
+  function editNote(event) {
+    note.displayForm();
+
+    const element = event.target.parentNode;
+    let id = element.id - 1;
+
+    let currentNote = notes[id];
+    
+    const $title = document.getElementById("noteTitle");
+    const $note = document.getElementById("note");
+
+    $title.value = currentNote.title;
+    $note.value = currentNote.noteContent;
+
+    const btn = document.querySelector(".submitBtn");
+    btn.removeEventListener("click", note.addNote);
+    btn.addEventListener("click", updateNote);
+
+    currentNoteId = id; 
+  }
+
+  function updateNote() {
+    const $title = document.getElementById("noteTitle");
+    let title = $title.value;
+
+    const $note = document.getElementById("note");
+    let noteContent = $note.value;
+
+    notes[currentNoteId] = { title, noteContent };
+
+    console.table(notes);
+    note.closeForm();
+    note.renderPage();
+  }
+
+  return {
+    editTodo,
+    updateTodo,
+    //editProject,
+    //updateProject,
+    editNote,
+    updateNote,
+  };
 })();
 
 /* 

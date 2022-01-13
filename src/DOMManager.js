@@ -1,6 +1,6 @@
 import { getTodoInput } from "./createTodo";
 import { project } from "./projects";
-import { update } from "./updateTodo";
+import { update } from "./update";
 import { note } from "./notes";
 
 export function updateDOM() {

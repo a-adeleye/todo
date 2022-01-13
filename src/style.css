@@ -152,6 +152,7 @@ main {
 
 .noteView {
   display: flex;
+  align-items: flex-start;
   flex-wrap: wrap;
   height: 60vh;
   margin-left: 20px;
@@ -357,8 +358,8 @@ textarea {
 }
 
 .noteCard {
+  position: relative;
   width: 200px;
-  height: 250px;
   background: white;
   border-radius: 8px;
   padding: 10px;
@@ -367,6 +368,11 @@ textarea {
 
 .noteCard > h4 {
   margin-bottom: 10px;
+}
+
+.noteCard > .far {
+  position: absolute;
+  inset: auto 0.7em 0.5em auto;
 }
 
 .newProjectForm {

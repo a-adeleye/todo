@@ -1,5 +1,5 @@
 import './style.css';
-import { showActions } from './updateTodo';
+import { showActions } from './update';
 import {todos} from './todos';
 import { updateDOM } from './DOMManager';
 

@@ -1,9 +1,10 @@
 import { createForm } from "./form";
+import {update} from './update';
 
 let notes = [];
 
-function Note(title, note) {
-  return { title, note };
+function Note(title, noteContent) {
+  return { title, noteContent };
 }
 
 export const note = (() => {
@@ -21,13 +22,13 @@ export const note = (() => {
     const $note = document.getElementById("note");
 
     let title = $title.value;
-    let note = $note.value;
+    let noteContent = $note.value;
 
-    let newNote = Note(title, note);
+    let newNote = Note(title, noteContent);
 
     notes.push(newNote);
     console.table(newNote);
-    updateNotes();
+    renderPage();
     closeForm();
   }
 
@@ -45,17 +46,39 @@ export const note = (() => {
       noteCard.className = "noteCard";
 
       const noteTitle = document.createElement("h4");
-      const note = document.createElement("p");
-
       noteTitle.textContent = notes[i - 1].title;
-      note.textContent = notes[i - 1].note;
-
       noteCard.appendChild(noteTitle);
+
+      const note = document.createElement("p");
+      note.textContent = notes[i - 1].noteContent;
       noteCard.appendChild(note);
 
+      const edit = document.createElement("i");
+      edit.innerText = " Edit";
+      edit.className = "far";
+      edit.classList.add("fa-edit");
+      edit.addEventListener('click', update.editNote)
+      noteCard.appendChild(edit);
+     
       dashboard.appendChild(noteCard);
     }
   }
 
-  return { displayForm, closeForm, addNote, updateNotes, notes };
+  function assignId() {
+    const notes = Array.from(document.querySelectorAll(".noteCard"));
+    let id = "";
+    for (let i = 0; i < notes.length; i++) {
+      id = notes.length - i;
+      notes[i].setAttribute("id", id);
+    }
+  }
+
+  function renderPage(){
+    updateNotes();
+    assignId();
+  }
+
+  return { displayForm, closeForm, addNote, renderPage};
 })();
+
+export {notes};
