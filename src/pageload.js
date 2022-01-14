@@ -139,7 +139,12 @@ export const pageload = (() => {
     h2.setAttribute("id", "categoryName");
     h2.textContent = "Home";
 
+    const count = document.createElement("span");
+    count.className = 'count';
+
     category.appendChild(h2);
+    category.appendChild(count);
+    
     heading.appendChild(category);
 
     const filter = document.createElement("select");

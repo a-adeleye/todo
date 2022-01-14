@@ -1,10 +1,10 @@
-import {storage} from './storage';
+import { storage } from "./storage";
 import { todos, Todo } from "./todos";
 import { createForm } from "./form";
-import { update } from './update';
+import { update } from "./update";
 import { updateDOM } from "./DOMManager";
 
-export const getTodoInput = (() => {
+export const todo = (() => {
   function displayForm() {
     createForm.todoForm();
     const form = document.querySelector(".newTodoForm");
@@ -54,8 +54,8 @@ export const getTodoInput = (() => {
       dashboard.className = "todoView";
     }
 
-    const todo = document.createElement("div");
-    todo.className = "todo";
+    const todoPane = document.createElement("div");
+    todoPane.className = "todo";
 
     const status = document.createElement("div");
     status.className = "status";
@@ -66,8 +66,8 @@ export const getTodoInput = (() => {
     todoList.textContent = "";
 
     for (let i = todos.length; i > 0; i--) {
-      let todo = todos[i - 1];
-      create(todo);
+      let todoCard = todos[i - 1];
+      create(todoCard);
     }
 
     function create(obj) {
@@ -97,21 +97,23 @@ export const getTodoInput = (() => {
       edit.innerText = " Edit";
       edit.className = "fas";
       edit.classList.add("fa-edit");
-     edit.addEventListener('click',update.editTodo);
+      edit.addEventListener("click", update.editTodo);
 
       const complete = document.createElement("i");
       complete.innerText = " Complete";
       complete.className = "fas";
       complete.classList.add("fa-check-square");
+      /*complete.addEventListener("click", update.completeTodo);*/
 
-      const  deleteTodo = document.createElement("i");
+      const deleteTodo = document.createElement("i");
       deleteTodo.innerText = " Delete";
       deleteTodo.className = "fas";
       deleteTodo.classList.add("fa-trash");
+      deleteTodo.addEventListener("click", update.deleteTodo);
 
       taskActions.appendChild(edit);
       taskActions.appendChild(complete);
-      taskActions.appendChild( deleteTodo);
+      taskActions.appendChild(deleteTodo);
 
       const priorityIndicator = document.createElement("div");
       priorityIndicator.setAttribute(
@@ -134,10 +136,10 @@ export const getTodoInput = (() => {
 
       todoList.appendChild(todoItem);
       updateStatus(status);
-      todo.appendChild(status);
-      todo.appendChild(todoList);
+      todoPane.appendChild(status);
+      todoPane.appendChild(todoList);
 
-      dashboard.appendChild(todo);
+      dashboard.appendChild(todoPane);
     }
 
     function updateStatus(status) {
@@ -201,16 +203,18 @@ export const getTodoInput = (() => {
     }
   }
 
-  function renderPage(){
+  function renderPage() {
     updateCard();
     assignId();
     updateDOM();
     updateHeading();
   }
 
-  function updateHeading(){
-    const heading = document.getElementById('categoryName');
-      heading.textContent = 'Home';
+  function updateHeading() {
+    const heading = document.getElementById("categoryName");
+    const count = document.querySelector(".count");
+    heading.textContent = "Home";
+    count.textContent = todos.length;
   }
 
   return { displayForm, closeForm, addTodo, renderPage, todos };

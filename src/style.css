@@ -140,6 +140,9 @@ color: #003459;
 
 .category {
   margin-left: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .heading > select {
@@ -158,6 +161,19 @@ color: #003459;
   margin-left: 20px;
   overflow-y: auto;
   align-items: flex-start;
+}
+
+.projectView {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 60vh;
+  margin-left: 20px;
+  overflow-y: auto;
+  background: #f3f1f6;
+  padding: 20px;
+  gap: 10px;
 }
 
 .noteView {
@@ -196,9 +212,11 @@ color: #003459;
 .count {
   background: #e1e7e7;
   color: black;
-  border-radius: 8px;
+  border-radius: 50%;
   padding: 8px;
+  text-align: center;
 }
+
 .todo-item {
   position: relative;
   width: 90%;

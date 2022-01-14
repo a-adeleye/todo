@@ -7,14 +7,6 @@ let allProjects = ["Default"];
 export const project = (() => {
   const projectList = document.querySelector("#project");
 
-  function createProject(projectName) {
-    let option = document.createElement("option");
-    option.value = projectName;
-    option.textContent = projectName;
-    projectList.appendChild(option);
-    console.table(projectName);
-  }
-
   function displayForm() {
     createForm.projectForm();
     const form = document.querySelector(".newProjectForm");
@@ -50,11 +42,12 @@ export const project = (() => {
     const dashboard = document.getElementById("dashboard");
     dashboard.textContent = "";
 
-    if (dashboard.className !== "noteView") {
-      dashboard.className = "noteView";
+    if (dashboard.className !== "projectView") {
+      dashboard.className = "projectView";
     }
 
     for (let i = allProjects.length; i > 0; i--) {
+
       const projectCard = document.createElement("div");
       projectCard.className = "projectCard";
 
@@ -79,18 +72,21 @@ export const project = (() => {
       edit.classList.add("fa-edit");
       edit.addEventListener("click", update.editProject);
 
-      const deleteProject = document.createElement("i");
-      deleteProject.innerText = " Delete";
-      deleteProject.className = "fas";
-      deleteProject.classList.add("fa-trash");
-      /*deleteProject.addEventListener("click", update.editProject);*/
+      const deleteBtn = document.createElement("i");
+      deleteBtn.innerText = " Delete";
+      deleteBtn.className = "fas";
+      deleteBtn.classList.add("fa-trash");
+      deleteBtn.addEventListener("click", update.deleteProject);
 
       projectActions.appendChild(edit);
-      projectActions.appendChild(deleteProject);
+      projectActions.appendChild(deleteBtn);
 
       projectCard.appendChild(div);
 
-      projectCard.appendChild(projectActions);
+      if(i !== 1){
+        projectCard.appendChild(projectActions);
+      }
+      
 
       dashboard.appendChild(projectCard);
     }
@@ -113,7 +109,9 @@ export const project = (() => {
 
   function updateHeading() {
     const heading = document.getElementById("categoryName");
+    const count = document.querySelector(".count");
     heading.textContent = "Projects";
+    count.textContent = allProjects.length;
   }
 
   return { displayForm, closeForm, addProject, renderPage };

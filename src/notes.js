@@ -56,7 +56,7 @@ export const note = (() => {
       noteCard.appendChild(note);
 
       const noteActions = document.createElement("div");
-      noteActions.className = 'noteActions';
+      noteActions.className = "noteActions";
 
       const edit = document.createElement("i");
       edit.innerText = " Edit";
@@ -67,7 +67,7 @@ export const note = (() => {
       const deleteNote = document.createElement("i");
       deleteNote.innerText = " Delete";
       deleteNote.className = "fas";
-      deleteNote.classList.add("fa-edit");
+      deleteNote.classList.add("fa-trash");
       deleteNote.addEventListener("click", update.deleteNote);
 
       noteActions.appendChild(edit);
@@ -95,9 +95,11 @@ export const note = (() => {
     updateHeading();
   }
 
-  function updateHeading(){
-      const heading = document.getElementById('categoryName');
-      heading.textContent = 'Notes';
+  function updateHeading() {
+    const heading = document.getElementById("categoryName");
+    const count = document.querySelector(".count");
+    heading.textContent = "Notes";
+    count.textContent = notes.length;
   }
 
   return { displayForm, closeForm, addNote, renderPage };

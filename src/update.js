@@ -1,6 +1,6 @@
 import { storage} from './storage';
 import { todos } from "./todos";
-import { getTodoInput } from "./createTodo";
+import { todo } from "./createTodo";
 import { note, notes } from "./notes";
 import { project, allProjects } from './projects';
 
@@ -10,29 +10,29 @@ export const update = (() => {
   let currentProjectId = "";
 
   const editTodo = (event) => {
-    getTodoInput.displayForm();
+    todo.displayForm();
     const element = event.target.parentNode;
     let id = element.parentNode.id - 1;
 
-    let todo = todos[id];
+    let currentTodo = todos[id];
 
     const $title = document.querySelector("#title");
-    $title.value = todo.title;
+    $title.value = currentTodo.title;
 
     const $description = document.querySelector("#description");
-    $description.value = todo.description;
+    $description.value = currentTodo.description;
 
     const $project = document.querySelector("#project");
-    $project.value = todo.project;
+    $project.value = currentTodo.project;
 
     const $date = document.querySelector("#due-date");
-    $date.value = todo.date;
+    $date.value = currentTodo.date;
 
     const $priority = document.querySelector("#priority");
-    $priority.value = todo.priority;
+    $priority.value = currentTodo.priority;
 
     const btn = document.querySelector(".submitBtn");
-    btn.removeEventListener("click", getTodoInput.addTodo);
+    btn.removeEventListener("click", todo.addTodo);
     btn.addEventListener("click", updateTodo);
 
     currentCardId = id;
@@ -60,8 +60,17 @@ export const update = (() => {
 
     storage.populateTodos();
 
-    getTodoInput.closeForm();
-    getTodoInput.renderPage();
+    todo.closeForm();
+    todo.renderPage();
+  }
+
+  function deleteTodo(event){
+    const element = event.target;
+    const card = element.parentNode.parentNode;
+    let id = card.id - 1;
+    todos.splice(id,1);
+    storage.populateTodos();
+    todo.renderPage();
   }
 
   
@@ -133,13 +142,25 @@ export const update = (() => {
     note.renderPage();
   }
 
-  function deleteNote(event){
+  function deleteProject(event){
     const element = event.target;
     const card = element.parentNode.parentNode;
+    
+    let id = card.id - 1;
+    allProjects.splice(id,1);
+    storage.populateProjects();
+    project.renderPage();
+  }
+
+  function deleteNote(event){
+    const element = event.target;
+    console.table(notes);
+    const card = element.parentNode.parentNode;
+    console.log(card.parentNode);
 
     let id = card.id - 1;
-    todos.splice(id,1);
-    card.parentNode.removeChild(card);
+    notes.splice(id,1);
+    console.table(notes);
     storage.populateNotes();
     note.renderPage();
   }
@@ -147,11 +168,13 @@ export const update = (() => {
   return {
     editTodo,
     updateTodo,
+    deleteTodo,
     editProject,
     updateProject,
+    deleteProject,
     editNote,
     updateNote,
-    deleteNote
+    deleteNote,
   };
 })();
 

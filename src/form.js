@@ -1,4 +1,4 @@
-import { getTodoInput } from "./createTodo";
+import { todo } from "./createTodo";
 import { project, allProjects } from "./projects";
 import { note } from "./notes";
 import { storage } from "./storage";
@@ -18,7 +18,7 @@ export const createForm = (() => {
     closeBtn.className = "fas";
     closeBtn.classList.add("fa-window-close");
     closeBtn.setAttribute("id", "closeTodoForm");
-    closeBtn.addEventListener("click", getTodoInput.closeForm);
+    closeBtn.addEventListener("click", todo.closeForm);
     formContainer.appendChild(closeBtn);
 
     const form = document.createElement("form");
@@ -119,7 +119,7 @@ export const createForm = (() => {
     const submit = document.createElement("a");
     submit.className = "submitBtn";
     submit.textContent = "Submit";
-    submit.addEventListener("click", getTodoInput.addTodo);
+    submit.addEventListener("click", todo.addTodo);
     rightDiv.appendChild(submit);
 
     content.appendChild(formContainer);

@@ -3,7 +3,7 @@ import { pageload } from "./pageload";
 import { storage } from "./storage";
 import { todos } from "./todos";
 import { updateDOM } from "./DOMManager";
-import { getTodoInput } from "./createTodo";
+import { todo } from "./createTodo";
 
 document.addEventListener("DOMContentLoaded", () => {
   pageload.createNav();
@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
   pageload.createTop();
   pageload.createHeading();
   pageload.createDashboard();
-  getTodoInput.renderPage();
+  todo.renderPage();
  
   updateDOM();
 
