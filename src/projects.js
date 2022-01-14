@@ -1,5 +1,6 @@
 import { createForm } from "./form";
 import { storage } from "./storage";
+import {update} from './update';
 
 let allProjects = ["Default"];
 
@@ -44,7 +45,8 @@ export const project = (() => {
     renderPage();
   }
 
-  function updateProjects(){
+  function updateProjects() {
+    storage.retrieveProjects();
     const dashboard = document.getElementById("dashboard");
     dashboard.textContent = "";
 
@@ -56,26 +58,27 @@ export const project = (() => {
       const projectCard = document.createElement("div");
       projectCard.className = "projectCard";
 
-      const div = document.createElement('div');
-      div.className = 'projectContent';
+      const div = document.createElement("div");
+      div.className = "projectContent";
 
       const id = document.createElement("h5");
-      id.textContent = allProjects.length - (i-1)+'.';
+      id.textContent = allProjects.length - (i - 1) + ".";
       div.appendChild(id);
 
       const project = document.createElement("p");
       project.textContent = allProjects[i - 1];
+      project.setAttribute("id", "projectContent");
       div.appendChild(project);
 
-      const projectActions = document.createElement('div');
-      projectActions.className = 'projectActions';
-      
+      const projectActions = document.createElement("div");
+      projectActions.className = "projectActions";
+
       const edit = document.createElement("i");
       edit.innerText = " Edit";
       edit.className = "fas";
       edit.classList.add("fa-edit");
-      /*edit.addEventListener("click", update.editProject);*/
-      
+      edit.addEventListener("click", update.editProject);
+
       const deleteProject = document.createElement("i");
       deleteProject.innerText = " Delete";
       deleteProject.className = "fas";
@@ -91,19 +94,27 @@ export const project = (() => {
 
       dashboard.appendChild(projectCard);
     }
-
   }
 
-  function renderPage(){
-      storage.retrieveProjects();
-      updateProjects();
-      updateHeading();
+  function assignId() {
+    const cards = Array.from(document.querySelectorAll(".projectCard"));
+    let id = "";
+    for (let i = 0; i < cards.length; i++) {
+      id = cards.length - i;
+      cards[i].setAttribute("id", id);
+    }
   }
 
-  function updateHeading(){
-    const heading = document.getElementById('categoryName');
-    heading.textContent = 'Projects';
-}
+  function renderPage() {
+    updateProjects();
+    assignId();
+    updateHeading();
+  }
+
+  function updateHeading() {
+    const heading = document.getElementById("categoryName");
+    heading.textContent = "Projects";
+  }
 
   return { displayForm, closeForm, addProject, renderPage };
 })();

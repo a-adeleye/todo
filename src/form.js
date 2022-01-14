@@ -146,7 +146,7 @@ export const createForm = (() => {
 
     const newProjectLabel = document.createElement("label");
     newProjectLabel.setAttribute("for", "newProject");
-    newProjectLabel.textContent = "New project";
+    newProjectLabel.textContent = "Project";
     form.appendChild(newProjectLabel);
 
     const newProjectInput = document.createElement("input");
@@ -192,7 +192,7 @@ export const createForm = (() => {
 
     const noteLabel = document.createElement("label");
     noteLabel.setAttribute("for", "note");
-    noteLabel.textContent = "New note";
+    noteLabel.textContent = "Note";
     formContainer.appendChild(noteLabel);
 
     const noteInput = document.createElement("textarea");

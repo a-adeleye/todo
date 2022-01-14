@@ -3,10 +3,12 @@ import { todos } from "./todos";
 import { getTodoInput } from "./createTodo";
 import { note, notes } from "./notes";
 import { pageload } from './pageload';
+import { project, allProjects } from './projects';
 
 export const update = (() => {
   let currentCardId = "";
   let currentNoteId = "";
+  let currentProjectId = "";
 
   const editTodo = (event) => {
     getTodoInput.displayForm();
@@ -63,11 +65,30 @@ export const update = (() => {
     getTodoInput.renderPage();
   }
 
-  /*
+  
 
-  function editProject() {}
+  function editProject(event) {
+    project.displayForm();
 
-  function updateProject() {} */
+    const element = event.target.parentNode.parentNode;
+    let id = element.id - 1;
+
+    let currentProject = allProjects[id];
+
+    console.log(currentProject);
+    
+    const $project = document.getElementById("newProjectName");
+
+    $project.value = currentProject;
+
+    const btn = document.querySelector(".submitBtn");
+    btn.removeEventListener("click", project.addProject);
+    btn.addEventListener("click", updateProject);
+
+    currentNoteId = id; 
+  }
+
+  function updateProject() {}
 
   function editNote(event) {
     note.displayForm();
@@ -118,7 +139,7 @@ export const update = (() => {
   return {
     editTodo,
     updateTodo,
-    //editProject,
+    editProject,
     //updateProject,
     editNote,
     updateNote,
