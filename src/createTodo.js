@@ -46,6 +46,7 @@ export const todo = (() => {
 
   function updateCard() {
     const dashboard = document.getElementById("dashboard");
+
     storage.retrieveTodos();
 
     dashboard.textContent = "";
@@ -54,16 +55,60 @@ export const todo = (() => {
       dashboard.className = "todoView";
     }
 
+    // Todo
+
     const todoPane = document.createElement("div");
     todoPane.className = "todo";
 
     const status = document.createElement("div");
     status.className = "status";
 
+    const todoStatusName = document.createElement("div");
+    todoStatusName.className = "status-name";
+    todoStatusName.textContent = "Todo";
+    status.appendChild(todoStatusName);
+
+    const todoCount = document.createElement("div");
+    todoCount.className = "count";
+    todoCount.setAttribute("id", "todoCount");
+    status.appendChild(todoCount);
+
     const todoList = document.createElement("div");
     todoList.className = "todoList";
 
     todoList.textContent = "";
+
+    todoPane.appendChild(status);
+    todoPane.appendChild(todoList);
+
+    //Completed
+
+    const completedPane = document.createElement("div");
+    completedPane.className = "completed";
+
+    const completedStatus = document.createElement("div");
+    completedStatus.className = "status";
+
+    const completedStatusName = document.createElement("div");
+    completedStatusName.className = "status-name";
+    completedStatusName.textContent = "Completed";
+    completedStatus.appendChild(completedStatusName);
+
+    const completedCount = document.createElement("div");
+    completedCount.className = "count";
+    completedCount.setAttribute("id", "completedCount");
+    completedStatus.appendChild(completedCount);
+
+    const completedList = document.createElement("div");
+    completedList.className = "todoList";
+
+    completedList.textContent = "";
+
+    completedPane.appendChild(completedStatus);
+    completedPane.appendChild(completedList);
+
+    dashboard.appendChild(todoPane);
+    dashboard.appendChild(completedPane);
 
     for (let i = todos.length; i > 0; i--) {
       let todoCard = todos[i - 1];
@@ -103,7 +148,7 @@ export const todo = (() => {
       complete.innerText = " Complete";
       complete.className = "fas";
       complete.classList.add("fa-check-square");
-      /*complete.addEventListener("click", update.completeTodo);*/
+      complete.addEventListener("click", update.completeTodo);
 
       const deleteTodo = document.createElement("i");
       deleteTodo.innerText = " Delete";
@@ -123,6 +168,10 @@ export const todo = (() => {
 
       const todoItem = document.createElement("div");
       todoItem.className = "todo-item";
+      if(obj.status == 'completed'){
+        todoItem.classList.add('completedTodo');
+      }
+      
 
       // Append
 
@@ -133,86 +182,38 @@ export const todo = (() => {
       todoItem.appendChild(priority);
       todoItem.appendChild(taskActions);
       todoItem.appendChild(priorityIndicator);
+      todoItem.setAttribute('id',obj.id);
 
-      todoList.appendChild(todoItem);
-      updateStatus(status);
-      todoPane.appendChild(status);
-      todoPane.appendChild(todoList);
 
-      dashboard.appendChild(todoPane);
+      if(obj.status !== 'completed'){
+        todoList.appendChild(todoItem);
+      } else {
+        completedList.appendChild(todoItem);
+      }
+      
     }
-
-    function updateStatus(status) {
-      let todoCount = todos.length;
-
-      const statusName = document.createElement("div");
-      statusName.className = "status-name";
-      statusName.textContent = "Todo";
-
-      const count = document.createElement("div");
-      count.className = "count";
-      count.setAttribute("id", "todoCount");
-      count.textContent = todoCount;
-
-      status.textContent = "";
-
-      status.appendChild(statusName);
-      status.appendChild(count);
-
-      // Update competed todos
-    }
-
-    const completedList = document.createElement("div");
-    completedList.className = "completed";
-
-    const completedStatus = document.createElement("div");
-    completedStatus.className = "status";
-
-    function updateCompleted() {
-      const dashboard = document.getElementById("dashboard");
-      const statusName = document.createElement("div");
-      statusName.className = "status-name";
-      statusName.textContent = "Completed";
-
-      const count = document.createElement("div");
-      count.className = "count";
-      count.setAttribute("id", "todoCount");
-
-      let completedCount = todos.length;
-      count.textContent = completedCount;
-
-      completedList.textContent = "";
-      completedStatus.textContent = "";
-
-      completedStatus.appendChild(statusName);
-      completedStatus.appendChild(count);
-
-      completedList.appendChild(completedStatus);
-
-      dashboard.appendChild(completedList);
-    }
-    updateCompleted();
   }
 
-  function assignId() {
-    const cards = Array.from(document.querySelectorAll(".todo-item"));
-    let id = "";
-    for (let i = 0; i < cards.length; i++) {
-      id = cards.length - i;
-      cards[i].setAttribute("id", id);
-    }
+  function updateStatus() {
+    const todoCount = document.getElementById("todoCount");
+    let todoNumber = todos.filter(todo => todo.status !== 'completed');
+    todoCount.textContent = todoNumber.length;
+
+    const completedCount = document.getElementById("completedCount");
+    let completedTodos = todos.filter(todo => todo.status == 'completed');
+    completedCount.textContent = completedTodos.length;
   }
 
   function renderPage() {
     updateCard();
-    assignId();
+    updateStatus();
     updateDOM();
     updateHeading();
   }
 
   function updateHeading() {
     const heading = document.getElementById("categoryName");
-    const count = document.querySelector(".count");
+    const count = document.getElementById("categoryCount");
     heading.textContent = "Home";
     count.textContent = todos.length;
   }

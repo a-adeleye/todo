@@ -64,6 +64,18 @@ export const update = (() => {
     todo.renderPage();
   }
 
+  function completeTodo(event){
+    const element = event.target;
+    const card = element.parentNode.parentNode;
+    card.classList.add('completedTodo');
+    let id = card.id - 1;
+    if(todos[id].status !== 'completed'){
+      todos[id].status = 'completed'
+    }
+    storage.populateTodos();
+    todo.renderPage();
+  }
+
   function deleteTodo(event){
     const element = event.target;
     const card = element.parentNode.parentNode;
@@ -82,8 +94,6 @@ export const update = (() => {
     let id = element.id - 1;
 
     let currentProject = allProjects[id];
-
-    console.log(currentProject);
     
     const $project = document.getElementById("newProjectName");
 
@@ -154,13 +164,10 @@ export const update = (() => {
 
   function deleteNote(event){
     const element = event.target;
-    console.table(notes);
     const card = element.parentNode.parentNode;
-    console.log(card.parentNode);
 
     let id = card.id - 1;
     notes.splice(id,1);
-    console.table(notes);
     storage.populateNotes();
     note.renderPage();
   }
@@ -169,6 +176,7 @@ export const update = (() => {
     editTodo,
     updateTodo,
     deleteTodo,
+    completeTodo,
     editProject,
     updateProject,
     deleteProject,

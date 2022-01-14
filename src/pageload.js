@@ -141,6 +141,7 @@ export const pageload = (() => {
 
     const count = document.createElement("span");
     count.className = 'count';
+    count.setAttribute('id','categoryCount');
 
     category.appendChild(h2);
     category.appendChild(count);

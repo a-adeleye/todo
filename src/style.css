@@ -191,7 +191,7 @@ color: #003459;
 
 .todo,
 .completed
-/* .in-progress, */ {
+ {
   background: #f3f1f6;
   border-radius: 8px;
 }
@@ -226,6 +226,20 @@ color: #003459;
   margin: 20px auto;
   /* transition: transform 100ms ease; */
 }
+
+.completedTodo{
+  background-color: rgba(117, 223, 140, 0.164);
+  }
+  
+  .completedTodo:after{
+    content: 'completed';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: rgb(206, 185, 185);
+    /* background-color: rgba(255, 0, 0, 0.288); */
+  }
 
 .taskActions {
   display: flex;
