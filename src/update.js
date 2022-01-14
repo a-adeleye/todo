@@ -2,7 +2,6 @@ import { storage} from './storage';
 import { todos } from "./todos";
 import { getTodoInput } from "./createTodo";
 import { note, notes } from "./notes";
-import { pageload } from './pageload';
 import { project, allProjects } from './projects';
 
 export const update = (() => {
@@ -88,7 +87,16 @@ export const update = (() => {
     currentNoteId = id; 
   }
 
-  function updateProject() {}
+  function updateProject() {
+    const $projectText = document.getElementById("newProjectName");
+    let projectText = $projectText.value;
+
+    allProjects[currentNoteId] = projectText;
+
+    storage.populateProjects();
+    project.closeForm();
+    project.renderPage();
+  }
 
   function editNote(event) {
     note.displayForm();
@@ -140,7 +148,7 @@ export const update = (() => {
     editTodo,
     updateTodo,
     editProject,
-    //updateProject,
+    updateProject,
     editNote,
     updateNote,
     deleteNote
