@@ -30,7 +30,6 @@ export const note = (() => {
 
     notes.push(newNote);
     storage.populateNotes();
-    console.table(newNote);
     renderPage();
     closeForm();
   }
@@ -56,13 +55,25 @@ export const note = (() => {
       note.textContent = notes[i - 1].noteContent;
       noteCard.appendChild(note);
 
+      const noteActions = document.createElement("div");
+      noteActions.className = 'noteActions';
+
       const edit = document.createElement("i");
       edit.innerText = " Edit";
-      edit.className = "far";
+      edit.className = "fas";
       edit.classList.add("fa-edit");
       edit.addEventListener("click", update.editNote);
-      noteCard.appendChild(edit);
 
+      const deleteNote = document.createElement("i");
+      deleteNote.innerText = " Delete";
+      deleteNote.className = "fas";
+      deleteNote.classList.add("fa-edit");
+      deleteNote.addEventListener("click", update.deleteNote);
+
+      noteActions.appendChild(edit);
+      noteActions.appendChild(deleteNote);
+
+      noteCard.appendChild(noteActions);
       dashboard.appendChild(noteCard);
     }
 
@@ -81,6 +92,12 @@ export const note = (() => {
   function renderPage() {
     storage.retrieveNotes();
     updateNotes();
+    updateHeading();
+  }
+
+  function updateHeading(){
+      const heading = document.getElementById('categoryName');
+      heading.textContent = 'Notes';
   }
 
   return { displayForm, closeForm, addNote, renderPage };

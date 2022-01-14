@@ -4,14 +4,13 @@ import { note } from "./notes";
 import { storage } from "./storage";
 
 export const createForm = (() => {
-  const content = document.querySelector("#content");
-
   // Todo form
 
   function todoForm() {
+    const content = document.getElementById("content");
 
     storage.retrieveProjects();
-    
+
     const formContainer = document.createElement("div");
     formContainer.className = "newTodoForm";
 
@@ -129,6 +128,8 @@ export const createForm = (() => {
   // Project form
 
   function projectForm() {
+    const content = document.getElementById("content");
+
     const formContainer = document.createElement("div");
     formContainer.className = "newProjectForm";
 
@@ -167,6 +168,7 @@ export const createForm = (() => {
   //Note form
 
   function noteForm() {
+    const content = document.getElementById("content");
     const formContainer = document.createElement("div");
     formContainer.className = "noteForm";
 

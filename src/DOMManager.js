@@ -13,11 +13,21 @@ export function updateDOM() {
   const newNoteBtn = document.getElementById("newNote");
   newNoteBtn.addEventListener("click", note.displayForm);
 
-  const editTodoBtns = Array.from(document.querySelectorAll(".fa-edit"));
+  const homeLink = document.getElementById('homeLink');
+  homeLink.addEventListener('click',getTodoInput.renderPage);
+
+  const noteLink = document.getElementById('noteLink');
+  noteLink.addEventListener('click',note.renderPage);
+
+  const projectLink = document.getElementById('projectLink');
+  projectLink.addEventListener('click',project.renderPage);
+
+
+  /*const editTodoBtns = Array.from(document.querySelectorAll(".fa-edit"));
   editTodoBtns.forEach((btn) => btn.addEventListener("click", update.editTodo));
 
   const updateTodoBtns = Array.from(document.querySelectorAll("#updateTodo"));
   updateTodoBtns.forEach((btn) =>
     btn.addEventListener("click", update.updateTodo)
-  );
+  );*/
 }

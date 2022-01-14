@@ -41,9 +41,71 @@ export const project = (() => {
     closeForm();
     storage.populateProjects();
     console.table(allProjects);
+    renderPage();
   }
 
-  return { displayForm, closeForm, addProject };
+  function updateProjects(){
+    const dashboard = document.getElementById("dashboard");
+    dashboard.textContent = "";
+
+    if (dashboard.className !== "noteView") {
+      dashboard.className = "noteView";
+    }
+
+    for (let i = allProjects.length; i > 0; i--) {
+      const projectCard = document.createElement("div");
+      projectCard.className = "projectCard";
+
+      const div = document.createElement('div');
+      div.className = 'projectContent';
+
+      const id = document.createElement("h5");
+      id.textContent = allProjects.length - (i-1)+'.';
+      div.appendChild(id);
+
+      const project = document.createElement("p");
+      project.textContent = allProjects[i - 1];
+      div.appendChild(project);
+
+      const projectActions = document.createElement('div');
+      projectActions.className = 'projectActions';
+      
+      const edit = document.createElement("i");
+      edit.innerText = " Edit";
+      edit.className = "fas";
+      edit.classList.add("fa-edit");
+      /*edit.addEventListener("click", update.editProject);*/
+      
+      const deleteProject = document.createElement("i");
+      deleteProject.innerText = " Delete";
+      deleteProject.className = "fas";
+      deleteProject.classList.add("fa-trash");
+      /*deleteProject.addEventListener("click", update.editProject);*/
+
+      projectActions.appendChild(edit);
+      projectActions.appendChild(deleteProject);
+
+      projectCard.appendChild(div);
+
+      projectCard.appendChild(projectActions);
+
+      dashboard.appendChild(projectCard);
+    }
+
+  }
+
+  function renderPage(){
+      storage.retrieveProjects();
+      updateProjects();
+      updateHeading();
+  }
+
+  function updateHeading(){
+    const heading = document.getElementById('categoryName');
+    heading.textContent = 'Projects';
+}
+
+  return { displayForm, closeForm, addProject, renderPage };
 })();
 
 export { allProjects };

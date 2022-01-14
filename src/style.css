@@ -25,7 +25,7 @@ main {
   position: relative;
 }
 
-.leftSideBar {
+nav {
   width: 15%;
   height: 100vh;
   position: absolute;
@@ -38,15 +38,15 @@ main {
   padding-top: 25px;
   padding-bottom: 40px;
   font-family: var(--logoFont);
-  color: #5599f7;
+  color: #003459;
 }
 
-.navigation {
+.nav-items {
   display: flex;
   flex-direction: column;
 }
 
-.navigation > a {
+.nav-items > a {
   display: block;
   padding-top: 20px;
   font-family: var(--titleFont);
@@ -54,7 +54,7 @@ main {
   color: #2d3b4a;
 }
 
-.navigation > a > img {
+.nav-items > a > img {
   height: 15px;
 }
 
@@ -108,6 +108,15 @@ main {
   justify-content: space-between;
   align-items: center;
   column-gap: 30px;
+  font-family: var(--defaultFont);
+}
+
+.button > .fas{
+color: #003459;
+}
+
+.button > a{
+  display: block;
 }
 
 .button {
@@ -116,6 +125,7 @@ main {
   column-gap: 5px;
   font-size: 0.9em;
   cursor: pointer;
+  font-weight: bold;
 }
 
 .button > img {
@@ -162,6 +172,7 @@ main {
   gap: 10px;
 }
 
+
 .todo,
 .completed
 /* .in-progress, */ {
@@ -196,6 +207,19 @@ main {
   border-radius: 8px;
   margin: 20px auto;
   /* transition: transform 100ms ease; */
+}
+
+.taskActions {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  column-gap: 10px;
+  margin-top: 20px;
+}
+
+.taskActions > .fas {
+  color: #003459;
+  font-size: 0.7em;
 }
 
 /* .todo-item:hover {
@@ -237,14 +261,6 @@ main {
 
 #completed {
   background: #ffffff70;
-}
-
-.taskActions {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  column-gap: 10px;
-  margin-top: 20px;
 }
 
 #updateTodo {
@@ -370,9 +386,48 @@ textarea {
   margin-bottom: 10px;
 }
 
-.noteCard > .far {
-  position: absolute;
-  inset: auto 0.7em 0.5em auto;
+.noteActions {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  column-gap: 10px;
+  margin-top: 20px;
+}
+
+.noteActions > .fas {
+  color: #003459;
+  font-size: 0.7em;
+}
+
+.projectCard{
+  position: relative;
+  display: flex;
+  justify-content:space-between;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  background: white;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.projectContent{
+  width: 60%;
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+}
+
+.projectActions{
+  display: flex;
+  justify-content: space-evenly;
+  justify-self: flex-end;
+  width: 30%;
+}
+
+.projectActions > .fas {
+  color: #003459;
+  font-size: 0.7em;
 }
 
 .newProjectForm {
@@ -444,7 +499,7 @@ form select {
 .fas {
   font-size: 2em;
   color: white;
-  margin-bottom: 10px;
+  /* margin-bottom: 10px; */
   cursor: pointer;
   align-self: center;
 }

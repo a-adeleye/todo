@@ -94,16 +94,22 @@ export const getTodoInput = (() => {
 
       const edit = document.createElement("i");
       edit.innerText = " Edit";
-      edit.className = "far";
+      edit.className = "fas";
       edit.classList.add("fa-edit");
 
       const complete = document.createElement("i");
       complete.innerText = " Complete";
-      complete.className = "far";
+      complete.className = "fas";
       complete.classList.add("fa-check-square");
+
+      const  deleteTodo = document.createElement("i");
+      deleteTodo.innerText = " Delete";
+      deleteTodo.className = "fas";
+      deleteTodo.classList.add("fa-trash");
 
       taskActions.appendChild(edit);
       taskActions.appendChild(complete);
+      taskActions.appendChild( deleteTodo);
 
       const priorityIndicator = document.createElement("div");
       priorityIndicator.setAttribute(
@@ -197,7 +203,12 @@ export const getTodoInput = (() => {
     updateCard();
     assignId();
     updateDOM();
-    console.log(todos);
+    updateHeading();
+  }
+
+  function updateHeading(){
+    const heading = document.getElementById('categoryName');
+      heading.textContent = 'Home';
   }
 
   return { displayForm, closeForm, addTodo, renderPage, todos };

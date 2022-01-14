@@ -1,4 +1,4 @@
-import {populateStorage, retrieveData} from './storage';
+import { storage} from './storage';
 import { todos } from "./todos";
 import { getTodoInput } from "./createTodo";
 import { note, notes } from "./notes";
@@ -34,7 +34,6 @@ export const update = (() => {
     btn.addEventListener("click", updateTodo);
 
     currentCardId = id;
-    console.table(todos);
   };
 
   function updateTodo() {
@@ -57,7 +56,6 @@ export const update = (() => {
 
     todos[currentCardId] = { id, title, description, project, date, priority };
 
-    console.table(todos);
     getTodoInput.closeForm();
     getTodoInput.renderPage();
   }
@@ -98,9 +96,13 @@ export const update = (() => {
 
     notes[currentNoteId] = { title, noteContent };
 
-    console.table(notes);
+    storage.populateNotes();
     note.closeForm();
     note.renderPage();
+  }
+
+  function deleteNote(){
+
   }
 
   return {
@@ -110,6 +112,7 @@ export const update = (() => {
     //updateProject,
     editNote,
     updateNote,
+    deleteNote
   };
 })();
 

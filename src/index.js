@@ -1,9 +1,18 @@
 import "./style.css";
+import { pageload } from "./pageload";
 import { storage } from "./storage";
 import { todos } from "./todos";
 import { updateDOM } from "./DOMManager";
+import { getTodoInput } from "./createTodo";
 
 document.addEventListener("DOMContentLoaded", () => {
+  pageload.createNav();
+  pageload.createFooter();
+  pageload.createTop();
+  pageload.createHeading();
+  pageload.createDashboard();
+  getTodoInput.renderPage();
+ 
   updateDOM();
 
   if (!localStorage.getItem("projects")) {
