@@ -72,7 +72,7 @@ export const update = (() => {
   function editNote(event) {
     note.displayForm();
 
-    const element = event.target.parentNode;
+    const element = event.target.parentNode.parentNode;
     let id = element.id - 1;
 
     let currentNote = notes[id];
