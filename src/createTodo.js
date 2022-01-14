@@ -1,6 +1,7 @@
 import {storage} from './storage';
 import { todos, Todo } from "./todos";
 import { createForm } from "./form";
+import { update } from './update';
 import { updateDOM } from "./DOMManager";
 
 export const getTodoInput = (() => {
@@ -66,10 +67,10 @@ export const getTodoInput = (() => {
 
     for (let i = todos.length; i > 0; i--) {
       let todo = todos[i - 1];
-      update(todo);
+      create(todo);
     }
 
-    function update(obj) {
+    function create(obj) {
       const $title = obj.title;
       const $description = obj.description;
       const $project = obj.project;
@@ -96,6 +97,7 @@ export const getTodoInput = (() => {
       edit.innerText = " Edit";
       edit.className = "fas";
       edit.classList.add("fa-edit");
+     edit.addEventListener('click',update.editTodo);
 
       const complete = document.createElement("i");
       complete.innerText = " Complete";

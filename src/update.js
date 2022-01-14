@@ -2,6 +2,7 @@ import { storage} from './storage';
 import { todos } from "./todos";
 import { getTodoInput } from "./createTodo";
 import { note, notes } from "./notes";
+import { pageload } from './pageload';
 
 export const update = (() => {
   let currentCardId = "";
@@ -56,6 +57,8 @@ export const update = (() => {
 
     todos[currentCardId] = { id, title, description, project, date, priority };
 
+    storage.populateTodos();
+
     getTodoInput.closeForm();
     getTodoInput.renderPage();
   }
@@ -101,8 +104,15 @@ export const update = (() => {
     note.renderPage();
   }
 
-  function deleteNote(){
+  function deleteNote(event){
+    const element = event.target;
+    const card = element.parentNode.parentNode;
 
+    let id = card.id - 1;
+    todos.splice(id,1);
+    card.parentNode.removeChild(card);
+    storage.populateNotes();
+    note.renderPage();
   }
 
   return {
