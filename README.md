@@ -9,11 +9,11 @@ Keep track of tasks with custom project folders and notes.
 - Items automatically sorted according to date of input (latest first).
 - Data saved to local storage.
 
-Feature ideas to implement.
+<div align="center"><img src="./dist/images/todo-app-screenshot.png" alt="screenshot of website" width="1000" /></div>
+
+[Live App](https://a-adeleye.github.io/todo/)
+
+Feature ideas to implement in the future.
 
 - Responsive design for smaller devices.
 - User login and project/note sharing between users.
-
-[Live App](https://bscottnz.github.io/todo/)
-
-![alt text](https://raw.githubusercontent.com/bscottnz/todo/master/todo.png "App Preview")
