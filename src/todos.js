@@ -1,4 +1,5 @@
 let todos = [];
+let todoArray = [];
 
 const Todo = function (title, description, project, date, priority) {
   let id = todos.length + 1;
@@ -7,4 +8,4 @@ const Todo = function (title, description, project, date, priority) {
   };
 
 
-export {todos, Todo};
+export {todos, todoArray, Todo};

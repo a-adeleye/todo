@@ -1,3 +1,6 @@
+import { storage } from "./storage";
+import { todos } from "./todos";
+
 export const pageload = (() => {
   const body = document.querySelector("body");
 
@@ -24,23 +27,24 @@ export const pageload = (() => {
     navigation.appendChild(navItems);
 
     let items = [
-      { title: " Home", src: "./images/home.png", id: 'homeLink' },
-      { title: " Today", src: "./images/today.png", id: 'todayLink' },
-      { title: " This Week", src: "./images/week.png", id: 'weekLink' },
-      { title: " This Month", src: "./images/calendar.png", id: 'monthLink' },
-      { title: " Projects", src: "./images/folder.png", id: 'projectLink' },
-      { title: " Notes", src: "./images/notes.png", id: 'noteLink' },
+      { title: " Home", src: "./images/home.png", id: "homeLink" },
+      { title: " Today", src: "./images/today.png", id: "todayLink" },
+      { title: " This Week", src: "./images/week.png", id: "weekLink" },
+      { title: " This Month", src: "./images/calendar.png", id: "monthLink" },
+      { title: " Projects", src: "./images/folder.png", id: "projectLink" },
+      { title: " Notes", src: "./images/notes.png", id: "noteLink" },
     ];
 
     for (let i = 0; i < items.length; i++) {
-      let item = document.createElement("a");
+      let item = document.createElement("div");
+      item.className = "item";
+      let text = document.createElement("a");
+      text.textContent = items[i].title;
       let img = document.createElement("img");
       img.src = items[i].src;
-      img.setAttribute('id',items[i].id);
+      item.setAttribute("id", items[i].id);
       item.appendChild(img);
-      //let text = document.createTextNode();
-      img.after(items[i].title);
-
+      item.appendChild(text);
       navItems.appendChild(item);
     }
 
@@ -64,11 +68,24 @@ export const pageload = (() => {
     i.classList.add("fa-search");
 
     const search = document.createElement("input");
-    search.setAttribute("type", "text");
-    search.setAttribute("placeholder", "search");
+    search.setAttribute("list", "datalist");
+    search.setAttribute("id", "search");
+    search.setAttribute("placeholder", "search todos");
+
+    const dataList = document.createElement("datalist");
+    dataList.setAttribute("id", "datalist");
+    top.appendChild(dataList);
 
     searchBox.appendChild(i);
     searchBox.appendChild(search);
+
+    storage.retrieveTodos();
+    console.log(todos.length);
+    for (let i = 0; i < todos.length; i++) {
+      const option = document.createElement("option");
+      option.value = todos[i].title;
+      dataList.appendChild(option);
+    }
 
     const buttons = document.createElement("div");
     buttons.className = "buttons";
@@ -140,37 +157,42 @@ export const pageload = (() => {
     h2.textContent = "Home";
 
     const count = document.createElement("span");
-    count.className = 'count';
-    count.setAttribute('id','categoryCount');
+    count.className = "count";
+    count.setAttribute("id", "categoryCount");
 
     category.appendChild(h2);
     category.appendChild(count);
-    
+
     heading.appendChild(category);
 
     const filter = document.createElement("select");
     filter.setAttribute("id", "filter");
+
+    const all = document.createElement("option");
+    all.value = "All";
+    all.textContent = "All";
 
     const today = document.createElement("option");
     today.value = "Today";
     today.textContent = "Today";
 
     const thisWeek = document.createElement("option");
-    thisWeek.value = "thisWeek";
+    thisWeek.value = "This Week";
     thisWeek.textContent = "This Week";
 
     const thisMonth = document.createElement("option");
-    thisMonth.value = "thisMonth";
+    thisMonth.value = "This Month";
     thisMonth.textContent = "This Month";
 
+    filter.appendChild(all);
     filter.appendChild(today);
     filter.appendChild(thisWeek);
     filter.appendChild(thisMonth);
+    filter.value = "All";
 
     heading.appendChild(filter);
 
     app.appendChild(heading);
-
   }
 
   function createDashboard() {

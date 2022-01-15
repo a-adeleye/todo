@@ -46,15 +46,18 @@ nav {
   flex-direction: column;
 }
 
-.nav-items > a {
-  display: block;
+.item{
+  width: max-content;
   padding-top: 20px;
   font-family: var(--titleFont);
   cursor: pointer;
+}
+
+.item > a {
   color: #2d3b4a;
 }
 
-.nav-items > a > img {
+.item > img {
   height: 15px;
 }
 

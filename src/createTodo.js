@@ -1,8 +1,9 @@
 import { storage } from "./storage";
-import { todos, Todo } from "./todos";
+import { todos, todoArray, Todo } from "./todos";
 import { createForm } from "./form";
 import { update } from "./update";
 import { updateDOM } from "./DOMManager";
+import { isToday, isThisWeek, isThisMonth } from "./datefunctions";
 
 export const todo = (() => {
   function displayForm() {
@@ -43,11 +44,24 @@ export const todo = (() => {
     closeForm();
     renderPage();
   }
+  //let todoArray = [];
+  
 
   function updateCard() {
     const dashboard = document.getElementById("dashboard");
 
     storage.retrieveTodos();
+
+    const filter = document.getElementById("filter");
+    todoArray = todos;
+
+    if (filter.value == "This Month") {
+      todoArray = todos.filter((todo) => isThisMonth(todo.date));
+    } else if (filter.value == "Today") {
+      todoArray = todos.filter((todo) => isToday(todo.date));
+    } else if(filter.value == "This Week"){
+      todoArray = todos.filter((todo) => isThisWeek(todo.date));
+    }
 
     dashboard.textContent = "";
 
@@ -110,8 +124,8 @@ export const todo = (() => {
     dashboard.appendChild(todoPane);
     dashboard.appendChild(completedPane);
 
-    for (let i = todos.length; i > 0; i--) {
-      let todoCard = todos[i - 1];
+    for (let i = todoArray.length; i > 0; i--) {
+      let todoCard = todoArray[i - 1];
       create(todoCard);
     }
 
@@ -168,10 +182,9 @@ export const todo = (() => {
 
       const todoItem = document.createElement("div");
       todoItem.className = "todo-item";
-      if(obj.status == 'completed'){
-        todoItem.classList.add('completedTodo');
+      if (obj.status == "completed") {
+        todoItem.classList.add("completedTodo");
       }
-      
 
       // Append
 
@@ -182,25 +195,23 @@ export const todo = (() => {
       todoItem.appendChild(priority);
       todoItem.appendChild(taskActions);
       todoItem.appendChild(priorityIndicator);
-      todoItem.setAttribute('id',todos.indexOf(obj));
+      todoItem.setAttribute("id", todoArray.indexOf(obj));
 
-
-      if(obj.status !== 'completed'){
+      if (obj.status !== "completed") {
         todoList.appendChild(todoItem);
       } else {
         completedList.appendChild(todoItem);
       }
-      
     }
   }
 
   function updateStatus() {
     const todoCount = document.getElementById("todoCount");
-    let todoNumber = todos.filter(todo => todo.status !== 'completed');
+    let todoNumber = todoArray.filter((todo) => todo.status !== "completed");
     todoCount.textContent = todoNumber.length;
 
     const completedCount = document.getElementById("completedCount");
-    let completedTodos = todos.filter(todo => todo.status == 'completed');
+    let completedTodos = todoArray.filter((todo) => todo.status == "completed");
     completedCount.textContent = completedTodos.length;
   }
 
@@ -212,10 +223,15 @@ export const todo = (() => {
   }
 
   function updateHeading() {
+    const filter = document.getElementById("filter");
     const heading = document.getElementById("categoryName");
     const count = document.getElementById("categoryCount");
-    heading.textContent = "Home";
-    count.textContent = todos.length;
+    if(filter.value == 'All'){
+      heading.textContent = 'Home';
+    } else {
+      heading.textContent = filter.value;
+    }
+    count.textContent = todoArray.length;
   }
 
   return { displayForm, closeForm, addTodo, renderPage, todos };
