@@ -74,19 +74,10 @@ export const note = (() => {
       noteActions.appendChild(deleteNote);
 
       noteCard.appendChild(noteActions);
+      noteCard.setAttribute('id',i-1);
       dashboard.appendChild(noteCard);
     }
 
-    assignId();
-  }
-
-  function assignId() {
-    const notes = Array.from(document.querySelectorAll(".noteCard"));
-    let id = "";
-    for (let i = 0; i < notes.length; i++) {
-      id = notes.length - i;
-      notes[i].setAttribute("id", id);
-    }
   }
 
   function renderPage() {

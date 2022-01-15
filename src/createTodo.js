@@ -182,7 +182,7 @@ export const todo = (() => {
       todoItem.appendChild(priority);
       todoItem.appendChild(taskActions);
       todoItem.appendChild(priorityIndicator);
-      todoItem.setAttribute('id',obj.id);
+      todoItem.setAttribute('id',todos.indexOf(obj));
 
 
       if(obj.status !== 'completed'){

@@ -12,7 +12,7 @@ export const update = (() => {
   const editTodo = (event) => {
     todo.displayForm();
     const element = event.target.parentNode;
-    let id = element.parentNode.id - 1;
+    let id = element.parentNode.id;
 
     let currentTodo = todos[id];
 
@@ -54,7 +54,7 @@ export const update = (() => {
     const $priority = document.querySelector("#priority");
     let priority = $priority.value;
 
-    let id = currentCardId + 1;
+    let id = currentCardId;
 
     todos[currentCardId] = { id, title, description, project, date, priority };
 
@@ -68,7 +68,7 @@ export const update = (() => {
     const element = event.target;
     const card = element.parentNode.parentNode;
     card.classList.add('completedTodo');
-    let id = card.id - 1;
+    let id = card.id;
     if(todos[id].status !== 'completed'){
       todos[id].status = 'completed'
     }
@@ -79,7 +79,7 @@ export const update = (() => {
   function deleteTodo(event){
     const element = event.target;
     const card = element.parentNode.parentNode;
-    let id = card.id - 1;
+    let id = card.id;
     todos.splice(id,1);
     storage.populateTodos();
     todo.renderPage();
@@ -91,7 +91,7 @@ export const update = (() => {
     project.displayForm();
 
     const element = event.target.parentNode.parentNode;
-    let id = element.id - 1;
+    let id = element.id;
 
     let currentProject = allProjects[id];
     
@@ -121,7 +121,7 @@ export const update = (() => {
     note.displayForm();
 
     const element = event.target.parentNode.parentNode;
-    let id = element.id - 1;
+    let id = element.id;
 
     let currentNote = notes[id];
     
@@ -156,7 +156,7 @@ export const update = (() => {
     const element = event.target;
     const card = element.parentNode.parentNode;
     
-    let id = card.id - 1;
+    let id = card.id;
     allProjects.splice(id,1);
     storage.populateProjects();
     project.renderPage();
@@ -166,7 +166,7 @@ export const update = (() => {
     const element = event.target;
     const card = element.parentNode.parentNode;
 
-    let id = card.id - 1;
+    let id = card.id;
     notes.splice(id,1);
     storage.populateNotes();
     note.renderPage();

@@ -85,6 +85,7 @@ export const project = (() => {
 
       if(i !== 1){
         projectCard.appendChild(projectActions);
+        projectCard.setAttribute("id", i-1);
       }
       
 
@@ -92,18 +93,8 @@ export const project = (() => {
     }
   }
 
-  function assignId() {
-    const cards = Array.from(document.querySelectorAll(".projectCard"));
-    let id = "";
-    for (let i = 0; i < cards.length; i++) {
-      id = cards.length - i;
-      cards[i].setAttribute("id", id);
-    }
-  }
-
   function renderPage() {
     updateProjects();
-    assignId();
     updateHeading();
   }
 
