@@ -1,6 +1,6 @@
 import { createForm } from "./form";
 import { storage } from "./storage";
-import {update} from './update';
+import { update } from "./update";
 
 let allProjects = ["Default"];
 
@@ -30,11 +30,17 @@ export const project = (() => {
   function addProject() {
     const $newProject = document.getElementById("newProjectName");
     let projectName = $newProject.value;
-    allProjects.push(projectName);
-    closeForm();
-    storage.populateProjects();
-    console.table(allProjects);
-    renderPage();
+
+    if ($newProject.checkValidity()) {
+      allProjects.push(projectName);
+      closeForm();
+      storage.populateProjects();
+      console.table(allProjects);
+      renderPage();
+    } else {
+      const errorMsg = document.getElementById("errorMsg");
+      errorMsg.textContent = "Project name cannot be empty";
+    }
   }
 
   function updateProjects() {
@@ -47,7 +53,6 @@ export const project = (() => {
     }
 
     for (let i = allProjects.length; i > 0; i--) {
-
       const projectCard = document.createElement("div");
       projectCard.className = "projectCard";
 
@@ -83,11 +88,10 @@ export const project = (() => {
 
       projectCard.appendChild(div);
 
-      if(i !== 1){
+      if (i !== 1) {
         projectCard.appendChild(projectActions);
-        projectCard.setAttribute("id", i-1);
+        projectCard.setAttribute("id", i - 1);
       }
-      
 
       dashboard.appendChild(projectCard);
     }

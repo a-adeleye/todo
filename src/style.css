@@ -257,10 +257,6 @@ color: #003459;
   font-size: 0.7em;
 }
 
-/* .todo-item:hover {
-  transform: scale(1.05);
-} */
-
 .todo-item > h5 {
   margin-top: 1em;
   font-weight: normal;
@@ -340,6 +336,15 @@ color: #003459;
   transition: opacity ease-in 0.2s;
 }
 
+.newTodoForm > p{
+  color: red;
+  text-align: center;
+}
+
+input:invalid, textarea:invalid{
+  border:1px solid red;
+}
+
 label {
   font-family: var(--defaultFont);
   font-weight: bold;
@@ -355,13 +360,26 @@ label {
   background: #003459;
   width: max-content;
   padding: 20px;
-  height: 340px;
+  height: 400px;
   z-index: 10;
   border-radius: 12px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-evenly;
+}
+
+.noteForm > p{
+  color: red;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.noteForm > form{
+  display: flex;
+  flex-direction: column;
+  width: max-content;
 }
 
 .noteForm > input[type="text"] {
@@ -483,6 +501,12 @@ textarea {
   z-index: 10;
   /* opacity: 0; */
   transition: opacity ease-in 0.2s;
+}
+
+.newProjectForm > p{
+  color: red;
+  text-align: center;
+  margin-top: 10px;
 }
 
 .newTodoForm > img,

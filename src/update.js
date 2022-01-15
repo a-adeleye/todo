@@ -1,8 +1,8 @@
-import { storage} from './storage';
+import { storage } from "./storage";
 import { todos } from "./todos";
 import { todo } from "./createTodo";
 import { note, notes } from "./notes";
-import { project, allProjects } from './projects';
+import { project, allProjects } from "./projects";
 
 export const update = (() => {
   let currentCardId = "";
@@ -56,36 +56,46 @@ export const update = (() => {
 
     let id = currentCardId;
 
-    todos[currentCardId] = { id, title, description, project, date, priority };
+    if ($title.checkValidity()) {
+      todos[currentCardId] = {
+        id,
+        title,
+        description,
+        project,
+        date,
+        priority,
+      };
 
-    storage.populateTodos();
+      storage.populateTodos();
 
-    todo.closeForm();
-    todo.renderPage();
+      todo.closeForm();
+      todo.renderPage();
+    } else {
+      const errorMsg = document.getElementById("errorMsg");
+      errorMsg.textContent = "Title can not be empty";
+    }
   }
 
-  function completeTodo(event){
+  function completeTodo(event) {
     const element = event.target;
     const card = element.parentNode.parentNode;
-    card.classList.add('completedTodo');
+    card.classList.add("completedTodo");
     let id = card.id;
-    if(todos[id].status !== 'completed'){
-      todos[id].status = 'completed'
+    if (todos[id].status !== "completed") {
+      todos[id].status = "completed";
     }
     storage.populateTodos();
     todo.renderPage();
   }
 
-  function deleteTodo(event){
+  function deleteTodo(event) {
     const element = event.target;
     const card = element.parentNode.parentNode;
     let id = card.id;
-    todos.splice(id,1);
+    todos.splice(id, 1);
     storage.populateTodos();
     todo.renderPage();
   }
-
-  
 
   function editProject(event) {
     project.displayForm();
@@ -94,7 +104,7 @@ export const update = (() => {
     let id = element.id;
 
     let currentProject = allProjects[id];
-    
+
     const $project = document.getElementById("newProjectName");
 
     $project.value = currentProject;
@@ -103,18 +113,22 @@ export const update = (() => {
     btn.removeEventListener("click", project.addProject);
     btn.addEventListener("click", updateProject);
 
-    currentNoteId = id; 
+    currentNoteId = id;
   }
 
   function updateProject() {
     const $projectText = document.getElementById("newProjectName");
     let projectText = $projectText.value;
 
-    allProjects[currentNoteId] = projectText;
-
-    storage.populateProjects();
-    project.closeForm();
-    project.renderPage();
+    if ($projectText.checkValidity()) {
+      allProjects[currentNoteId] = projectText;
+      storage.populateProjects();
+      project.closeForm();
+      project.renderPage();
+    } else {
+      const errorMsg = document.getElementById("errorMsg");
+      errorMsg.textContent = "Project name cannot be empty";
+    }
   }
 
   function editNote(event) {
@@ -124,7 +138,7 @@ export const update = (() => {
     let id = element.id;
 
     let currentNote = notes[id];
-    
+
     const $title = document.getElementById("noteTitle");
     const $note = document.getElementById("note");
 
@@ -135,7 +149,7 @@ export const update = (() => {
     btn.removeEventListener("click", note.addNote);
     btn.addEventListener("click", updateNote);
 
-    currentNoteId = id; 
+    currentNoteId = id;
   }
 
   function updateNote() {
@@ -145,29 +159,44 @@ export const update = (() => {
     const $note = document.getElementById("note");
     let noteContent = $note.value;
 
-    notes[currentNoteId] = { title, noteContent };
+    if ($title.checkValidity() && $note.checkValidity()) {
+      notes[currentNoteId] = { title, noteContent };
+      storage.populateNotes();
+      note.closeForm();
+      note.renderPage();
+    }
+    if (!$title.checkValidity() && !$note.checkValidity()) {
+      const errorMsg = document.getElementById("errorMsg");
+      errorMsg.textContent = "Title and note can not be empty";
+    }
 
-    storage.populateNotes();
-    note.closeForm();
-    note.renderPage();
+    if (!$title.checkValidity() && $note.checkValidity()) {
+      const errorMsg = document.getElementById("errorMsg");
+      errorMsg.textContent = "Title can not be empty";
+    }
+
+    if ($title.checkValidity() && !$note.checkValidity()) {
+      const errorMsg = document.getElementById("errorMsg");
+      errorMsg.textContent = "Note can not be empty";
+    }
   }
 
-  function deleteProject(event){
+  function deleteProject(event) {
     const element = event.target;
     const card = element.parentNode.parentNode;
-    
+
     let id = card.id;
-    allProjects.splice(id,1);
+    allProjects.splice(id, 1);
     storage.populateProjects();
     project.renderPage();
   }
 
-  function deleteNote(event){
+  function deleteNote(event) {
     const element = event.target;
     const card = element.parentNode.parentNode;
 
     let id = card.id;
-    notes.splice(id,1);
+    notes.splice(id, 1);
     storage.populateNotes();
     note.renderPage();
   }

@@ -17,13 +17,18 @@ export const createForm = (() => {
     const closeBtn = document.createElement("i");
     closeBtn.className = "fas";
     closeBtn.classList.add("fa-window-close");
-    closeBtn.setAttribute("id", "closeTodoForm");
+    closeBtn.id = "closeTodoForm";
     closeBtn.addEventListener("click", todo.closeForm);
     formContainer.appendChild(closeBtn);
+
+    const errorMsg = document.createElement("p");
+    errorMsg.id = "errorMsg";
 
     const form = document.createElement("form");
     form.setAttribute("onSubmit", "return false;");
     formContainer.appendChild(form);
+
+    formContainer.appendChild(errorMsg);
 
     const leftDiv = document.createElement("div");
     leftDiv.className = "left";
@@ -31,13 +36,14 @@ export const createForm = (() => {
 
     const titleLabel = document.createElement("label");
     titleLabel.setAttribute("for", "title");
-    titleLabel.textContent = "Title";
+    titleLabel.textContent = "Title*";
     leftDiv.appendChild(titleLabel);
 
     const titleInput = document.createElement("input");
-    titleInput.setAttribute("type", "text");
+    titleInput.type = "text";
     titleInput.setAttribute("name", "title");
-    titleInput.setAttribute("id", "title");
+    titleInput.id = "title";
+    titleInput.required = true;
     titleInput.setAttribute("placeholder", "Title here");
     leftDiv.appendChild(titleInput);
 
@@ -48,7 +54,7 @@ export const createForm = (() => {
 
     const projectInput = document.createElement("select");
     projectInput.setAttribute("name", "project");
-    projectInput.setAttribute("id", "project");
+    projectInput.id = "project";
 
     projectInput.textContent = "";
 
@@ -68,9 +74,9 @@ export const createForm = (() => {
     leftDiv.appendChild(descriptionLabel);
 
     const descriptionInput = document.createElement("input");
-    descriptionInput.setAttribute("type", "text");
+    descriptionInput.type = "text";
     descriptionInput.setAttribute("name", "description");
-    descriptionInput.setAttribute("id", "description");
+    descriptionInput.id = "description";
     descriptionInput.setAttribute("placeholder", "Description here");
     leftDiv.appendChild(descriptionInput);
 
@@ -84,9 +90,9 @@ export const createForm = (() => {
     rightDiv.appendChild(dateLabel);
 
     const dateInput = document.createElement("input");
-    dateInput.setAttribute("type", "date");
+    dateInput.type = "date";
     dateInput.setAttribute("name", "due-date");
-    dateInput.setAttribute("id", "due-date");
+    dateInput.id = "due-date";
     rightDiv.appendChild(dateInput);
 
     const priorityLabel = document.createElement("label");
@@ -96,7 +102,7 @@ export const createForm = (() => {
 
     const priorityInput = document.createElement("select");
     priorityInput.setAttribute("name", "priority");
-    priorityInput.setAttribute("id", "priority");
+    priorityInput.id = "priority";
 
     const optionLow = document.createElement("option");
     optionLow.setAttribute("value", "Low");
@@ -136,23 +142,29 @@ export const createForm = (() => {
     const closeBtn = document.createElement("i");
     closeBtn.className = "fas";
     closeBtn.classList.add("fa-window-close");
-    closeBtn.setAttribute("id", "closeProjectForm");
+    closeBtn.id = "closeProjectForm";
     closeBtn.addEventListener("click", project.closeForm);
     formContainer.appendChild(closeBtn);
+
+    const errorMsg = document.createElement("p");
+    errorMsg.id = "errorMsg";
 
     const form = document.createElement("form");
     form.setAttribute("onSubmit", "return false;");
     formContainer.appendChild(form);
 
+    formContainer.appendChild(errorMsg);
+
     const newProjectLabel = document.createElement("label");
     newProjectLabel.setAttribute("for", "newProject");
-    newProjectLabel.textContent = "Project";
+    newProjectLabel.textContent = "Project*";
     form.appendChild(newProjectLabel);
 
     const newProjectInput = document.createElement("input");
-    newProjectInput.setAttribute("type", "text");
+    newProjectInput.type = "text";
     newProjectInput.setAttribute("name", "newProject");
-    newProjectInput.setAttribute("id", "newProjectName");
+    newProjectInput.id = "newProjectName";
+    newProjectInput.required = true;
     newProjectInput.setAttribute("placeholder", "New project here");
     form.appendChild(newProjectInput);
 
@@ -178,37 +190,49 @@ export const createForm = (() => {
     closeBtn.addEventListener("click", note.closeForm);
     formContainer.appendChild(closeBtn);
 
+    const errorMsg = document.createElement("p");
+    errorMsg.id = "errorMsg";
+    errorMsg.textCOntent = "Reddddd";
+
+    const form = document.createElement("form");
+    form.setAttribute("onSubmit", "return false;");
+    formContainer.appendChild(form);
+
+    formContainer.appendChild(errorMsg);
+
     const titleLabel = document.createElement("label");
     titleLabel.setAttribute("for", "title");
-    titleLabel.textContent = "Title";
-    formContainer.appendChild(titleLabel);
+    titleLabel.textContent = "Title*";
+    form.appendChild(titleLabel);
 
     const noteTitle = document.createElement("input");
-    noteTitle.setAttribute("type", "text");
+    noteTitle.type = "text";
     noteTitle.setAttribute("name", "noteTitle");
-    noteTitle.setAttribute("id", "noteTitle");
+    noteTitle.id = "noteTitle";
+    noteTitle.required = true;
     noteTitle.setAttribute("placeholder", "Note title");
-    formContainer.appendChild(noteTitle);
+    form.appendChild(noteTitle);
 
     const noteLabel = document.createElement("label");
     noteLabel.setAttribute("for", "note");
-    noteLabel.textContent = "Note";
-    formContainer.appendChild(noteLabel);
+    noteLabel.textContent = "Note*";
+    form.appendChild(noteLabel);
 
     const noteInput = document.createElement("textarea");
     noteInput.setAttribute("name", "note");
-    noteInput.setAttribute("id", "note");
+    noteInput.id = "note";
+    noteInput.required = true;
     noteInput.setAttribute("placeholder", "New note here");
     noteInput.setAttribute("rows", "5");
     noteInput.setAttribute("cols", "20");
     noteInput.setAttribute("wrap", "hard");
-    formContainer.appendChild(noteInput);
+    form.appendChild(noteInput);
 
     const submit = document.createElement("a");
     submit.className = "submitBtn";
     submit.textContent = "Add note";
     submit.addEventListener("click", note.addNote);
-    formContainer.appendChild(submit);
+    form.appendChild(submit);
 
     content.appendChild(formContainer);
   }

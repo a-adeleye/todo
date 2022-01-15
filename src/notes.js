@@ -28,10 +28,27 @@ export const note = (() => {
 
     let newNote = Note(title, noteContent);
 
-    notes.push(newNote);
-    storage.populateNotes();
-    renderPage();
-    closeForm();
+    if ($title.checkValidity() && $note.checkValidity()) {
+      notes.push(newNote);
+      storage.populateNotes();
+      renderPage();
+      closeForm();
+    }
+
+    if (!$title.checkValidity() && !$note.checkValidity()) {
+      const errorMsg = document.getElementById("errorMsg");
+      errorMsg.textContent = "Title and note can not be empty";
+    }
+
+    if (!$title.checkValidity() && $note.checkValidity()) {
+      const errorMsg = document.getElementById("errorMsg");
+      errorMsg.textContent = "Title can not be empty";
+    }
+
+    if ($title.checkValidity() && !$note.checkValidity()) {
+      const errorMsg = document.getElementById("errorMsg");
+      errorMsg.textContent = "Note can not be empty";
+    }
   }
 
   function updateNotes() {
@@ -74,10 +91,9 @@ export const note = (() => {
       noteActions.appendChild(deleteNote);
 
       noteCard.appendChild(noteActions);
-      noteCard.setAttribute('id',i-1);
+      noteCard.setAttribute("id", i - 1);
       dashboard.appendChild(noteCard);
     }
-
   }
 
   function renderPage() {

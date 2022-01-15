@@ -1,6 +1,3 @@
-import { todos } from "./todos";
-import { todoArray } from "./todos";
-import { isToday, isThisWeek, isThisMonth } from "./datefunctions";
 import { todo } from "./createTodo";
 
 export const nav = (() => {

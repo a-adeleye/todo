@@ -37,15 +37,19 @@ export const todo = (() => {
     let date = $date.value;
     let priority = $priority.value;
 
-    const newTodo = Todo(title, description, project, date, priority);
+    if ($title.checkValidity()) {
+      const newTodo = Todo(title, description, project, date, priority);
 
-    todos.push(newTodo);
-    storage.populateTodos();
-    closeForm();
-    renderPage();
+      todos.push(newTodo);
+      storage.populateTodos();
+      closeForm();
+      renderPage();
+    } else {
+      const errorMsg = document.getElementById('errorMsg');
+      errorMsg.textContent = 'Title can not be empty';
+    };
   }
   //let todoArray = [];
-  
 
   function updateCard() {
     const dashboard = document.getElementById("dashboard");
@@ -59,7 +63,7 @@ export const todo = (() => {
       todoArray = todos.filter((todo) => isThisMonth(todo.date));
     } else if (filter.value == "Today") {
       todoArray = todos.filter((todo) => isToday(todo.date));
-    } else if(filter.value == "This Week"){
+    } else if (filter.value == "This Week") {
       todoArray = todos.filter((todo) => isThisWeek(todo.date));
     }
 
@@ -226,8 +230,8 @@ export const todo = (() => {
     const filter = document.getElementById("filter");
     const heading = document.getElementById("categoryName");
     const count = document.getElementById("categoryCount");
-    if(filter.value == 'All'){
-      heading.textContent = 'Home';
+    if (filter.value == "All") {
+      heading.textContent = "Home";
     } else {
       heading.textContent = filter.value;
     }
