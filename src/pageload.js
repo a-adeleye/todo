@@ -2,14 +2,10 @@ import { storage } from "./storage";
 import { todos } from "./todos";
 
 export const pageload = (() => {
-  const body = document.querySelector("body");
-
-  const content = document.createElement("div");
-  content.setAttribute("id", "content");
-
+  const content = document.getElementById("content");
+  
   const main = document.createElement("main");
-  content.appendChild(main);
-
+  
   function createNav() {
     const navigation = document.createElement("nav");
 
@@ -55,7 +51,6 @@ export const pageload = (() => {
 
     main.appendChild(navigation);
     content.appendChild(main);
-    body.appendChild(content);
   }
 
   function createTop() {
@@ -85,12 +80,6 @@ export const pageload = (() => {
     searchBox.appendChild(search);
 
     storage.retrieveTodos();
-    console.log(todos.length);
-    for (let i = 0; i < todos.length; i++) {
-      const option = document.createElement("option");
-      option.value = todos[i].title;
-      dataList.appendChild(option);
-    }
 
     const buttons = document.createElement("div");
     buttons.className = "buttons";
@@ -209,6 +198,7 @@ export const pageload = (() => {
   }
 
   function createFooter() {
+    const body = document.querySelector('body');
     const footer = document.createElement("footer");
 
     const a = document.createElement("a");
@@ -220,8 +210,8 @@ export const pageload = (() => {
     const madeBy = document.createElement("p");
     madeBy.innerHTML = "Adeleye Adeyemi &copy; 2021";
     footer.appendChild(madeBy);
-    content.appendChild(footer);
+    body.appendChild(footer);
   }
 
-  return { createNav, createFooter, createTop, createHeading, createDashboard };
+  return { createNav, createFooter, createTop, createHeading, createDashboard};
 })();

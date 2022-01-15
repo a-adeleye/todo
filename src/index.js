@@ -1,20 +1,10 @@
 import "./style.css";
 import { pageload } from "./pageload";
 import { storage } from "./storage";
-import { todos } from "./todos";
 import { updateDOM } from "./DOMManager";
 import { todo } from "./createTodo";
 
 document.addEventListener("DOMContentLoaded", () => {
-  pageload.createNav();
-  pageload.createFooter();
-  pageload.createTop();
-  pageload.createHeading();
-  pageload.createDashboard();
-  todo.renderPage();
- 
-  updateDOM();
-
   if (!localStorage.getItem("projects")) {
     storage.populateProjects();
   } else {
@@ -32,4 +22,13 @@ document.addEventListener("DOMContentLoaded", () => {
   } else {
     storage.retrieveNotes();
   }
+
+  pageload.createNav();
+  pageload.createTop();
+  pageload.createHeading();
+  pageload.createDashboard();
+  pageload.createFooter();
+  todo.renderPage();
+
+  updateDOM();
 });

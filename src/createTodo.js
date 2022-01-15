@@ -219,11 +219,24 @@ export const todo = (() => {
     completedCount.textContent = completedTodos.length;
   }
 
+  function populateSearch(){
+    storage.retrieveTodos();
+    for (let i = 0; i < todoArray.length; i++) {
+      const datalist = document.getElementById('datalist');
+      const option = document.createElement("option");
+      option.value = todoArray[i].title;
+      datalist.appendChild(option);
+    }
+    console.log(todoArray.length);
+  }
+
+
   function renderPage() {
     updateCard();
     updateStatus();
     updateDOM();
     updateHeading();
+    populateSearch();
   }
 
   function updateHeading() {
@@ -237,6 +250,7 @@ export const todo = (() => {
     }
     count.textContent = todoArray.length;
   }
+
 
   return { displayForm, closeForm, addTodo, renderPage, todos };
 })();
