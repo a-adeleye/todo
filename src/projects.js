@@ -2,7 +2,7 @@ import { createForm } from "./form";
 import { storage } from "./storage";
 import { update } from "./update";
 
-let allProjects = ["Default"];
+let allProjects = ["General"];
 
 export const project = (() => {
   const projectList = document.querySelector("#project");

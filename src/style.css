@@ -10,7 +10,8 @@
 
 html {
   font-family: var(--defaultFont);
-  color: #2d3b4a;
+  color: #ffffff;
+  background: #130f40;
 }
 
 :root {
@@ -31,14 +32,18 @@ nav {
   position: absolute;
   top: 0;
   left: 0;
-  border-right: 1px solid #cccccc;
+  border-right: 1px solid #83828280;
 }
 
 .logo {
   padding-top: 25px;
   padding-bottom: 40px;
   font-family: var(--logoFont);
-  color: #003459;
+  color: #ffffff;
+}
+
+.yellow{
+  color: #ffec78;
 }
 
 .nav-items {
@@ -54,7 +59,7 @@ nav {
 }
 
 .item > a {
-  color: #2d3b4a;
+  color: #ffffff;
 }
 
 .item > img {
@@ -115,7 +120,7 @@ nav {
 }
 
 .button > .fas{
-color: #003459;
+color: #ffe169;
 }
 
 .button > a{
@@ -153,7 +158,8 @@ color: #003459;
   height: 30px;
   border: none;
   cursor: pointer;
-  background-color: #f3f4f6;
+  background-color: #ffe169;
+  border-radius: 4px;
 }
 
 .todoView {
@@ -174,7 +180,7 @@ color: #003459;
   height: 60vh;
   margin-left: 20px;
   overflow-y: auto;
-  background: #f3f1f6;
+  background: #16114b;
   padding: 20px;
   gap: 10px;
 }
@@ -186,7 +192,7 @@ color: #003459;
   height: 60vh;
   margin-left: 20px;
   overflow-y: auto;
-  background: #f3f1f6;
+  background: #16114b;
   padding: 20px;
   gap: 10px;
 }
@@ -195,7 +201,7 @@ color: #003459;
 .todo,
 .completed
  {
-  background: #f3f1f6;
+  background: #16114b;
   border-radius: 8px;
 }
 
@@ -210,28 +216,33 @@ color: #003459;
 .status-name {
   font-family: var(--titleFont);
   font-weight: bold;
+  color: #ffffff;
 }
 
 .count {
-  background: #e1e7e7;
-  color: black;
+  background: #ffe169;
+  color: #130f40;
   border-radius: 50%;
+  min-width: 2.3em;
+  min-height: 2em;
   padding: 8px;
   text-align: center;
+  font-weight: lighter;
 }
 
 .todo-item {
   position: relative;
   width: 90%;
   padding: 15px;
-  background: white;
+  background: #131234;
+  color: #ffffff;
   border-radius: 8px;
   margin: 20px auto;
   /* transition: transform 100ms ease; */
 }
 
 .completedTodo{
-  background-color: rgba(117, 223, 140, 0.164);
+  background-color: #13123488;
   }
   
   .completedTodo:after{
@@ -240,7 +251,7 @@ color: #003459;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    color: rgb(206, 185, 185);
+    color: rgba(206, 185, 185, 0.274);
     /* background-color: rgba(255, 0, 0, 0.288); */
   }
 
@@ -253,7 +264,7 @@ color: #003459;
 }
 
 .taskActions > .fas {
-  color: #003459;
+  color: #ffed7870;
   font-size: 0.7em;
 }
 
@@ -326,14 +337,13 @@ color: #003459;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: #003459;
+  background: #130f40;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   z-index: 10;
-  /* opacity: 0; */
-  transition: opacity ease-in 0.2s;
+  border: 1px solid #ffec78;
 }
 
 .newTodoForm > p{
@@ -348,7 +358,7 @@ input:invalid, textarea:invalid{
 label {
   font-family: var(--defaultFont);
   font-weight: bold;
-  color: white;
+  color: #ffec78;
   margin-bottom: 5px;
 }
 
@@ -357,7 +367,7 @@ label {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: #003459;
+  background: #130f40;
   width: max-content;
   padding: 20px;
   height: 400px;
@@ -367,6 +377,7 @@ label {
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-evenly;
+  border: 1px solid #ffec78;
 }
 
 .noteForm > p{
@@ -394,7 +405,7 @@ label {
 
 textarea {
   border-radius: 4px;
-  border: none;
+  border: 1px solid #130f40;
   padding: 10px;
   margin-top: 10px;
   word-spacing: 5px;
@@ -405,8 +416,8 @@ textarea {
 .submitBtn {
   display: block;
   padding: 10px 20px;
-  background: white;
-  color: #003459;
+  background: #ffec78;
+  color: #130f40;
   width: 150px;
   text-align: center;
   border-radius: 8px;
@@ -421,18 +432,18 @@ textarea {
 }
 
 .right > .submitBtn {
- background: #f3f1f6;
- color: black;
+ background: #ffec78;
+ color: #130f40;
  margin-top: 10px
 }
 
 .noteCard {
   position: relative;
   width: 200px;
-  background: white;
+  background: #131234;
+  color: #ffffff;
   border-radius: 8px;
   padding: 10px;
-  /* transition: transform 100ms ease; */
 }
 
 .noteCard > h4 {
@@ -448,7 +459,7 @@ textarea {
 }
 
 .noteActions > .fas {
-  color: #003459;
+  color: #ffffff;
   font-size: 0.7em;
 }
 
@@ -459,7 +470,8 @@ textarea {
   align-items: center;
   gap: 10px;
   width: 100%;
-  background: white;
+  background: #131234;
+  color: #ffffff;
   border-radius: 8px;
   padding: 10px;
 }
@@ -479,7 +491,7 @@ textarea {
 }
 
 .projectActions > .fas {
-  color: #003459;
+  color: #ffffff;
   font-size: 0.7em;
 }
 
@@ -493,14 +505,14 @@ textarea {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: #003459;
+  background: #130f40;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   z-index: 10;
-  /* opacity: 0; */
   transition: opacity ease-in 0.2s;
+  border: 1px solid #ffec78;
 }
 
 .newProjectForm > p{
@@ -552,13 +564,12 @@ form select {
   margin-bottom: 20px;
   border-radius: 4px;
   height: 30px;
-  border: none;
+  border: 1px solid #130f40;
 }
 
 .fas {
   font-size: 2em;
-  color: white;
-  /* margin-bottom: 10px; */
+  color: #ffec78;
   cursor: pointer;
   align-self: center;
 }
@@ -568,7 +579,7 @@ form select {
 }
 
 form input[type="submit"] {
-  color: #003459;
+  color: #ffffff;
   background-color: white;
   cursor: pointer;
 }
@@ -588,6 +599,6 @@ footer {
   justify-content: center;
   row-gap: 10px;
   color: white;
-  background: linear-gradient(90deg, #d53369 0%, #daae51 100%);
+  background: linear-gradient(to bottom, #ffec78 50%, #1e1633 50%) ;
   font-size: 0.7em;
 }

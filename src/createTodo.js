@@ -136,9 +136,9 @@ export const todo = (() => {
     function create(obj) {
       const $title = obj.title;
       const $description = obj.description;
-      const $project = obj.project;
-      const $dueDate = obj.date;
-      const $priority = obj.priority;
+      const $project = `Project: ${obj.project}`;
+      const $dueDate = `Due date: ${obj.date}`;
+      const $priority = `Priority: ${obj.priority}`;
 
       const title = document.createElement("h4");
       title.textContent = $title;

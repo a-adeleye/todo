@@ -17,7 +17,12 @@ export const pageload = (() => {
     logo.className = "logo";
 
     const logoText = document.createElement("h3");
-    logoText.textContent = ".mytoDO";
+    logoText.textContent = ".my";
+
+    const span = document.createElement('span');
+    span.className = 'yellow';
+    span.textContent = 'toDO';
+    logoText.appendChild(span);
 
     logo.appendChild(logoText);
     navigation.appendChild(logo);

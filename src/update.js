@@ -214,28 +214,3 @@ export const update = (() => {
     deleteNote,
   };
 })();
-
-/* 
-  const updateTodo = (event) => {
-    const element = event.target.parentNode;
-    element.parentNode.setAttribute("contenteditable", "false");
-    element.parentNode.style.border = "none";
-    document.getElementById("updateTodo").style.display = "none";
-  };
-
-
-
-const $title = document.querySelector("#title");
-const $description = document.querySelector("#description");
-const $notes = document.querySelector("#notes");
-const $project = document.querySelector("#project");
-const $date = document.querySelector("#due-date");
-const $priority = document.querySelector("#priority");
-
-let title = $title.value;
-let description = $description.value;
-let notes = $notes.value;
-let project = $project.value;
-let date = $date.value;
-let priority = $priority.value;
-*/
